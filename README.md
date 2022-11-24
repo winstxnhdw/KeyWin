@@ -28,7 +28,7 @@ Keyboard.press(KeyCodes.VK_RETURN)
 Keyboard.press(KeyCodes.VK_LWIN, KeyCodes.VK_D)
 ```
 
-#### Manual KeyCodes
+#### Manual Key Codes
 
 If you are unable to find the key code you need, you can enter the hex key values manually.
 
