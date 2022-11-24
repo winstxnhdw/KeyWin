@@ -1,5 +1,4 @@
 #include <Python.h>
-#include <stdio.h>
 #include <Windows.h>
 
 static PyObject* press_keyboard(PyObject *self, PyObject *args) {
