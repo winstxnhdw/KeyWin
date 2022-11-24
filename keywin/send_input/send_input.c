@@ -12,14 +12,14 @@ static PyObject* press_keyboard(PyObject *self, PyObject *args) {
     INPUT* inputs = malloc(input_size * inputs_length);
     
     for (Py_ssize_t i = 0; i < key_list_length; i++) {
-        PyObject* key = PyTuple_GetItem(key_list, i);
-        inputs[i].type = INPUT_KEYBOARD;
+        PyObject* key    = PyTuple_GetItem(key_list, i);
+        inputs[i].type   = INPUT_KEYBOARD;
         inputs[i].ki.wVk = PyLong_AsLong(key);
     }
 
     for (Py_ssize_t i = key_list_length; i < inputs_length; i++) {
-        inputs[i].type = INPUT_KEYBOARD;
-        inputs[i].ki.wVk = inputs[i - key_list_length].ki.wVk;
+        inputs[i].type       = INPUT_KEYBOARD;
+        inputs[i].ki.wVk     = inputs[i - key_list_length].ki.wVk;
         inputs[i].ki.dwFlags = KEYEVENTF_KEYUP;
     }
 
@@ -45,12 +45,12 @@ static PyObject* send_mouse_event(PyObject *self, PyObject *args) {\
     for (Py_ssize_t i = 0; i < mouse_events_length; i++) {
         PyObject* mouse_event = PyTuple_GetItem(mouse_event_list, i);
 
-        inputs[i].type = INPUT_MOUSE;
-        inputs[i].mi.dx = PyLong_AsLong(PyList_GetItem(mouse_event, 0));
-        inputs[i].mi.dy = PyLong_AsLong(PyList_GetItem(mouse_event, 1));
+        inputs[i].type         = INPUT_MOUSE;
+        inputs[i].mi.dx        = PyLong_AsLong(PyList_GetItem(mouse_event, 0));
+        inputs[i].mi.dy        = PyLong_AsLong(PyList_GetItem(mouse_event, 1));
         inputs[i].mi.mouseData = PyLong_AsLong(PyList_GetItem(mouse_event, 2));
-        inputs[i].mi.dwFlags = PyLong_AsLong(PyList_GetItem(mouse_event, 3));
-        inputs[i].mi.time = 0;
+        inputs[i].mi.dwFlags   = PyLong_AsLong(PyList_GetItem(mouse_event, 3));
+        inputs[i].mi.time      = 0;
     }
 
     if (SendInput(mouse_events_length, inputs, input_size) != mouse_events_length) {
