@@ -2,22 +2,23 @@
 #include <Windows.h>
 
 static PyObject* press_keyboard(PyObject *self, PyObject *args) {
-    PyObject* key_list;
+    PyObject* key_tuple;
     
-    if (!PyArg_ParseTuple(args, "O", &key_list)) return NULL;
+    if (!PyArg_ParseTuple(args, "O", &key_tuple)) return NULL;
 
-    const Py_ssize_t key_list_length = PyObject_Length(key_list);
-    const size_t input_size = sizeof(INPUT);
-    const size_t inputs_length = key_list_length * 2;
+    const UINT key_list_length = (UINT)PyObject_Length(key_tuple);
+    const UINT inputs_length = key_list_length * 2;
+    const int input_size = sizeof(INPUT);
     INPUT* inputs = malloc(input_size * inputs_length);
     
-    for (Py_ssize_t i = 0; i < key_list_length; i++) {
-        PyObject* key    = PyTuple_GetItem(key_list, i);
-        inputs[i].type   = INPUT_KEYBOARD;
-        inputs[i].ki.wVk = PyLong_AsLong(key);
+    for (UINT i = 0; i < key_list_length; i++) {
+        PyObject* key        = PyTuple_GetItem(key_tuple, i);
+        inputs[i].type       = INPUT_KEYBOARD;
+        inputs[i].ki.wVk     = (WORD)PyLong_AsLong(key);
+        inputs[i].ki.dwFlags = 0;
     }
 
-    for (Py_ssize_t i = key_list_length; i < inputs_length; i++) {
+    for (UINT i = key_list_length; i < inputs_length; i++) {
         inputs[i].type       = INPUT_KEYBOARD;
         inputs[i].ki.wVk     = inputs[i - key_list_length].ki.wVk;
         inputs[i].ki.dwFlags = KEYEVENTF_KEYUP;
@@ -32,13 +33,13 @@ static PyObject* press_keyboard(PyObject *self, PyObject *args) {
     Py_RETURN_NONE;
 }
 
-static PyObject* send_mouse_event(PyObject *self, PyObject *args) {\
+static PyObject* send_mouse_event(PyObject *self, PyObject *args) {
     PyObject* mouse_event_list;
     
     if (!PyArg_ParseTuple(args, "O", &mouse_event_list)) return NULL;
 
     const Py_ssize_t mouse_events_length = PyObject_Length(mouse_event_list);
-    const size_t input_size = sizeof(INPUT);
+    const int input_size = sizeof(INPUT);
     INPUT* inputs = malloc(input_size * mouse_events_length);
 
     for (Py_ssize_t i = 0; i < mouse_events_length; i++) {
@@ -47,12 +48,12 @@ static PyObject* send_mouse_event(PyObject *self, PyObject *args) {\
         inputs[i].type         = INPUT_MOUSE;
         inputs[i].mi.dx        = PyLong_AsLong(PyList_GetItem(mouse_event, 0));
         inputs[i].mi.dy        = PyLong_AsLong(PyList_GetItem(mouse_event, 1));
-        inputs[i].mi.mouseData = PyLong_AsLong(PyList_GetItem(mouse_event, 2));
-        inputs[i].mi.dwFlags   = PyLong_AsLong(PyList_GetItem(mouse_event, 3));
+        inputs[i].mi.mouseData = PyLong_AsUnsignedLong(PyList_GetItem(mouse_event, 2));
+        inputs[i].mi.dwFlags   = PyLong_AsUnsignedLong(PyList_GetItem(mouse_event, 3));
         inputs[i].mi.time      = 0;
     }
 
-    if (SendInput(mouse_events_length, inputs, input_size) != mouse_events_length) {
+    if (SendInput((UINT)mouse_events_length, inputs, input_size) != mouse_events_length) {
         free(inputs);
         PyErr_SetString(PyExc_RuntimeError, "send_mouse_event failed.");
         return NULL;
