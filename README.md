@@ -21,8 +21,10 @@ def main():
     Keyboard.press(KeyCodes.VK_LWIN, KeyCodes.VK_D)
 
     # Left + Right click at (100, 100)
-    left_click_event = Mouse.create_event(Mouse.MOUSEEVENTF_LEFTDOWN | Mouse.MOUSEEVENTF_LEFTUP, 100, 100)
-    right_click_event = Mouse.create_event(Mouse.MOUSEEVENTF_RIGHTDOWN | Mouse.MOUSEEVENTF_RIGHTUP, 100, 100)
+    left_click_flag = KeyCodes.MOUSEEVENTF_LEFTDOWN | KeyCodes.MOUSEEVENTF_LEFTUP
+    left_click_event = Mouse.create_event(left_click_flag, 100, 100)
+    right_click_flag = KeyCodes.MOUSEEVENTF_RIGHTDOWN | KeyCodes.MOUSEEVENTF_RIGHTUP
+    right_click_event = Mouse.create_event(right_click_flag, 100, 100)
     Mouse.send_events(left_click_event, right_click_event)
 
 
