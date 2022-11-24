@@ -38,7 +38,6 @@ static PyObject* send_mouse_event(PyObject *self, PyObject *args) {\
     if (!PyArg_ParseTuple(args, "O", &mouse_event_list)) return NULL;
 
     const Py_ssize_t mouse_events_length = PyObject_Length(mouse_event_list);
-
     const size_t input_size = sizeof(INPUT);
     INPUT* inputs = malloc(input_size * mouse_events_length);
 
@@ -77,6 +76,5 @@ static struct PyModuleDef send_input_module = {
 };
 
 PyMODINIT_FUNC PyInit_send_input() {
-
     return PyModule_Create(&send_input_module);
 }
