@@ -16,7 +16,7 @@ pip install git+https://github.com/winstxnhdw/KeyWin
 
 #### Pre-mapped Key Codes
 
-`KeyWin` provides a set of pre-mapped key codes for common keys. These key codes are defined [here](https://github.com/winstxnhdw/KeyWin/blob/master/keywin/keycodes/__init__.py).
+`KeyWin` provides a set of pre-mapped key codes for common keys. These key codes are defined [here](https://github.com/winstxnhdw/KeyWin/blob/master/keywin/key_codes/__init__.py).
 
 ```python
 from keywin import KeyCodes, Keyboard
