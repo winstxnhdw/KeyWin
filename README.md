@@ -68,6 +68,42 @@ Mouse.right_click()
 # Middle click
 Mouse.middle_click()
 
+# xbutton1 click
+Mouse.xbutton1_click()
+
+# xbutton2 click
+Mouse.xbutton2_click()
+
+# Press left button
+Mouse.left_press()
+
+# Press right button
+Mouse.right_press()
+
+# Press middle button
+Mouse.middle_press()
+
+# Press xbutton1
+Mouse.xbutton1_press()
+
+# Press xbutton2
+Mouse.xbutton2_press()
+
+# Release left button
+Mouse.left_release()
+
+# Release right button
+Mouse.right_release()
+
+# Release middle button
+Mouse.middle_release()
+
+# Release xbutton1
+Mouse.xbutton1_release()
+
+# Release xbutton2
+Mouse.xbutton2_release()
+
 # Scroll up
 Mouse.scroll(10)
 
