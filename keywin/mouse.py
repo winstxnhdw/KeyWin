@@ -36,12 +36,12 @@ class Mouse:
 
     def xbutton1_click():
 
-        Mouse.click(MouseCodes.MOUSEEVENTF_XDOWN | MouseCodes.MOUSEEVENTF_XUP, 0x0001)
+        Mouse.click(MouseCodes.MOUSEEVENTF_XDOWN | MouseCodes.MOUSEEVENTF_XUP, MouseCodes.XBUTTON1)
 
 
     def xbutton2_click():
 
-        Mouse.click(MouseCodes.MOUSEEVENTF_XDOWN | MouseCodes.MOUSEEVENTF_XUP, 0x0002)
+        Mouse.click(MouseCodes.MOUSEEVENTF_XDOWN | MouseCodes.MOUSEEVENTF_XUP, MouseCodes.XBUTTON2)
 
 
     def left_press():
@@ -75,22 +75,22 @@ class Mouse:
 
     def xbutton1_press():
 
-        Mouse.click(MouseCodes.MOUSEEVENTF_XDOWN, 0x0001)
+        Mouse.click(MouseCodes.MOUSEEVENTF_XDOWN, MouseCodes.XBUTTON1)
 
 
     def xbutton1_release():
 
-        Mouse.click(MouseCodes.MOUSEEVENTF_XUP, 0x0001)
+        Mouse.click(MouseCodes.MOUSEEVENTF_XUP, MouseCodes.XBUTTON1)
 
 
     def xbutton2_press():
 
-        Mouse.click(MouseCodes.MOUSEEVENTF_XDOWN, 0x0002)
+        Mouse.click(MouseCodes.MOUSEEVENTF_XDOWN, MouseCodes.XBUTTON2)
     
 
     def xbutton2_release():
 
-        Mouse.click(MouseCodes.MOUSEEVENTF_XUP, 0x0002)
+        Mouse.click(MouseCodes.MOUSEEVENTF_XUP, MouseCodes.XBUTTON2)
 
 
     def move_relative(x: int, y: int, flag: int=0):
