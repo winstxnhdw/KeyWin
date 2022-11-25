@@ -16,7 +16,7 @@ pip install git+https://github.com/winstxnhdw/KeyWin
 
 #### Pre-mapped Key Codes
 
-`KeyWin` provides a set of pre-mapped key codes for common keys. These key codes are defined [here](https://github.com/winstxnhdw/KeyWin/blob/master/keywin/keycodes/__init__.py).
+`KeyWin` provides a set of pre-mapped key codes for common keys. These key codes are defined [here](https://github.com/winstxnhdw/KeyWin/blob/master/keywin/key_codes/__init__.py).
 
 ```python
 from keywin import KeyCodes, Keyboard
@@ -67,6 +67,42 @@ Mouse.right_click()
 
 # Middle click
 Mouse.middle_click()
+
+# xbutton1 click
+Mouse.xbutton1_click()
+
+# xbutton2 click
+Mouse.xbutton2_click()
+
+# Press left button
+Mouse.left_press()
+
+# Press right button
+Mouse.right_press()
+
+# Press middle button
+Mouse.middle_press()
+
+# Press xbutton1
+Mouse.xbutton1_press()
+
+# Press xbutton2
+Mouse.xbutton2_press()
+
+# Release left button
+Mouse.left_release()
+
+# Release right button
+Mouse.right_release()
+
+# Release middle button
+Mouse.middle_release()
+
+# Release xbutton1
+Mouse.xbutton1_release()
+
+# Release xbutton2
+Mouse.xbutton2_release()
 
 # Scroll up
 Mouse.scroll(10)
@@ -169,7 +205,7 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
     2    0.000    0.000    0.000    0.000 __init__.py:103(<lambda>)
     2    0.000    0.000    0.000    0.000 __init__.py:106(<lambda>)
     1    0.000    0.000    0.175    0.175 __init__.py:298(key_to_scan_codes)
-    121    0.000    0.000    0.175    0.001 __init__.py:317(<genexpr>)
+  121    0.000    0.000    0.175    0.001 __init__.py:317(<genexpr>)
     1    0.000    0.000    0.175    0.175 __init__.py:328(parse_hotkey)
     2    0.000    0.000    0.175    0.088 __init__.py:358(<genexpr>)
     1    0.000    0.000    0.177    0.177 __init__.py:361(send)
