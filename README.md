@@ -146,7 +146,7 @@ class Bot:
 
 ## Benchmarks
 
-`KeyWin` is designed to be used in applications that require low-latency inputs. The folliwng benchmarks were performed against boppreh's [keyboard](https://github.com/boppreh/keyboard) and [mouse](https://github.com/boppreh/mouse) libraries. In all cases, `KeyWin` is magnitudes faster than the other libraries.
+`KeyWin` is designed to be used in applications that require low-latency inputs. The following benchmarks were performed against boppreh's [keyboard](https://github.com/boppreh/keyboard) and [mouse](https://github.com/boppreh/mouse) libraries. In all cases, `KeyWin` is magnitudes faster than the other libraries.
 
 ### Keyboard Benchmark
 
@@ -291,17 +291,19 @@ import cProfile as profile
 from keywin import Mouse, MouseCodes
 
 
-move_absolute_flag = MouseCodes.MOUSEEVENTF_MOVE | MouseCodes.MOUSEEVENTF_ABSOLUTE
-desired_position = (100, 100)
-
 def keywin():
+
+    move_absolute_flag = MouseCodes.MOUSEEVENTF_MOVE | MouseCodes.MOUSEEVENTF_ABSOLUTE
+    left_click_flag = MouseCodes.MOUSEEVENTF_LEFTDOWN | MouseCodes.MOUSEEVENTF_LEFTUP
+    right_click_flag = MouseCodes.MOUSEEVENTF_RIGHTDOWN | MouseCodes.MOUSEEVENTF_RIGHTUP
+    desired_position = (100, 100)
 
     # Left + Right click at (100, 100)
     Mouse.send_events([
-        *desired_position, 0, move_absolute_flag | MouseCodes.MOUSEEVENTF_LEFTDOWN | MouseCodes.MOUSEEVENTF_LEFTUP
+        *desired_position, 0, move_absolute_flag | left_click_flag
     ],
     [
-        *desired_position, 0, move_absolute_flag | MouseCodes.MOUSEEVENTF_RIGHTDOWN | MouseCodes.MOUSEEVENTF_RIGHTUP
+        *desired_position, 0, move_absolute_flag | right_click_flag
     ])
 
 
