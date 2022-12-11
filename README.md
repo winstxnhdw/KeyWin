@@ -146,7 +146,7 @@ class Bot:
 
 ## Benchmarks
 
-`KeyWin` is designed to be used in applications that require low-latency inputs. The folliwng benchmarks were performed against boppreh's [keyboard](https://github.com/boppreh/keyboard) and [mouse](https://github.com/boppreh/mouse) libraries. In all cases, `KeyWin` is magnitudes faster than the other libraries.
+`KeyWin` is designed to be used in applications that require low-latency inputs. The following benchmarks were performed against boppreh's [keyboard](https://github.com/boppreh/keyboard) and [mouse](https://github.com/boppreh/mouse) libraries. In all cases, `KeyWin` is magnitudes faster than the other libraries.
 
 ### Keyboard Benchmark
 
