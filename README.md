@@ -292,16 +292,18 @@ from keywin import Mouse, MouseCodes
 
 
 move_absolute_flag = MouseCodes.MOUSEEVENTF_MOVE | MouseCodes.MOUSEEVENTF_ABSOLUTE
+left_click_flag = MouseCodes.MOUSEEVENTF_LEFTDOWN | MouseCodes.MOUSEEVENTF_LEFTUP
+right_click_flag = MouseCodes.MOUSEEVENTF_RIGHTDOWN | MouseCodes.MOUSEEVENTF_RIGHTUP
 desired_position = (100, 100)
 
 def keywin():
 
     # Left + Right click at (100, 100)
     Mouse.send_events([
-        *desired_position, 0, move_absolute_flag | MouseCodes.MOUSEEVENTF_LEFTDOWN | MouseCodes.MOUSEEVENTF_LEFTUP
+        *desired_position, 0, move_absolute_flag | left_click_flag
     ],
     [
-        *desired_position, 0, move_absolute_flag | MouseCodes.MOUSEEVENTF_RIGHTDOWN | MouseCodes.MOUSEEVENTF_RIGHTUP
+        *desired_position, 0, move_absolute_flag | right_click_flag
     ])
 
 
