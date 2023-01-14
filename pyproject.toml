@@ -19,3 +19,6 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/winstxnhdw/KeyWin"
 "Bug Tracker" = "https://github.com/winstxnhdw/KeyWin/issues"
+
+[tool.setuptools]
+packages = ["keywin.send_input"]
