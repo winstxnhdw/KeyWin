@@ -19,13 +19,13 @@ pip install git+https://github.com/winstxnhdw/KeyWin
 `KeyWin` provides a set of pre-mapped key codes for common keys. These key codes are defined [here](https://github.com/winstxnhdw/KeyWin/blob/master/keywin/key_codes/__init__.py).
 
 ```python
-from keywin import KeyCodes, Keyboard
+from keywin import KeyCodes, keyboard
 
 # Enter
-Keyboard.press(KeyCodes.VK_RETURN)
+keyboard.press(KeyCodes.VK_RETURN)
 
 # Win + D
-Keyboard.press(KeyCodes.VK_LWIN, KeyCodes.VK_D)
+keyboard.press(KeyCodes.VK_LWIN, KeyCodes.VK_D)
 ```
 
 #### Manual Key Codes
@@ -33,13 +33,13 @@ Keyboard.press(KeyCodes.VK_LWIN, KeyCodes.VK_D)
 If you are unable to find the key code you need, you can enter the hex key values manually.
 
 ```python
-from keywin import KeyCodes, Keyboard
+from keywin import keyboard
 
 # Enter
-Keyboard.press(0x0D)
+keyboard.press(0x0D)
 
 # Win + D
-Keyboard.press(0x5B, 0x44)
+keyboard.press(0x5B, 0x44)
 ```
 
 ### Mouse
@@ -51,70 +51,70 @@ Similar to the keyboard, `KeyWin` provides a low-level API for mouse inputs base
 `KeyWin` provides a set of helper functions for common mouse inputs.
 
 ```python
-from keywin import Mouse
+from keywin import mouse
 
 # Move mouse 100 down and 100 right from current position
-Mouse.move_relative(100, 100)
+mouse.move_relative(100, 100)
 
 # Move mouse to (100, 100)
-Mouse.move(100, 100)
+mouse.move(100, 100)
 
 # Left click
-Mouse.left_click()
+mouse.left_click()
 
 # Right click
-Mouse.right_click()
+mouse.right_click()
 
 # Middle click
-Mouse.middle_click()
+mouse.middle_click()
 
 # xbutton1 click
-Mouse.xbutton1_click()
+mouse.xbutton1_click()
 
 # xbutton2 click
-Mouse.xbutton2_click()
+mouse.xbutton2_click()
 
 # Press left button
-Mouse.left_press()
+mouse.left_press()
 
 # Press right button
-Mouse.right_press()
+mouse.right_press()
 
 # Press middle button
-Mouse.middle_press()
+mouse.middle_press()
 
 # Press xbutton1
-Mouse.xbutton1_press()
+mouse.xbutton1_press()
 
 # Press xbutton2
-Mouse.xbutton2_press()
+mouse.xbutton2_press()
 
 # Release left button
-Mouse.left_release()
+mouse.left_release()
 
 # Release right button
-Mouse.right_release()
+mouse.right_release()
 
 # Release middle button
-Mouse.middle_release()
+mouse.middle_release()
 
 # Release xbutton1
-Mouse.xbutton1_release()
+mouse.xbutton1_release()
 
 # Release xbutton2
-Mouse.xbutton2_release()
+mouse.xbutton2_release()
 
 # Scroll up
-Mouse.scroll(10)
+mouse.scroll(10)
 
 # Scroll down
-Mouse.scroll(-10)
+mouse.scroll(-10)
 
 # Scroll left
-Mouse.scroll_horizontal(10)
+mouse.scroll_horizontal(10)
 
 # Scroll right
-Mouse.scroll_horizontal(-10)
+mouse.scroll_horizontal(-10)
 ```
 
 #### Low-level Access
@@ -122,18 +122,18 @@ Mouse.scroll_horizontal(-10)
 Rarely, you may want to use the low-level API for low-latency inputs. `create_event()` is a helper function that returns a cacheable `MOUSEINPUT` list, which can be passed to the low-level wrapper function `send_events()`.
 
 ```python
-from keywin import Mouse, MouseCodes
+from keywin import mouse, MouseCodes
 
 
 class Bot:
 
     def __init__(self):
         
-        self.left_click_event = Mouse.create_event(
+        self.left_click_event = mouse.create_event(
             MouseCodes.MOUSEEVENTF_LEFTDOWN | MouseCodes.MOUSEEVENTF_LEFTUP, 100, 100
         )
 
-        self.right_click_event = Mouse.create_event(
+        self.right_click_event = mouse.create_event(
             MouseCodes.MOUSEEVENTF_RIGHTDOWN | MouseCodes.MOUSEEVENTF_RIGHTUP, 100, 100
         )
 
@@ -141,7 +141,7 @@ class Bot:
     def dual_click_at_100(self):
 
         # Left + Right click at (100, 100)
-        Mouse.send_events(self.left_click_event, self.right_click_event)
+        mouse.send_events(self.left_click_event, self.right_click_event)
 ```
 
 ## Benchmarks
@@ -155,12 +155,12 @@ KeyWin
 ```python
 import cProfile as profile
 
-from keywin import Keyboard, KeyCodes
+from keywin import keyboard, KeyCodes
 
 
 def keywin():
 
-    Keyboard.press(KeyCodes.VK_SPACE)
+    keyboard.press(KeyCodes.VK_SPACE)
 
 
 if __name__ == '__main__':
@@ -288,7 +288,7 @@ KeyWin
 ```python
 import cProfile as profile
 
-from keywin import Mouse, MouseCodes
+from keywin import mouse, MouseCodes
 
 
 def keywin():
@@ -299,7 +299,7 @@ def keywin():
     desired_position = (100, 100)
 
     # Left + Right click at (100, 100)
-    Mouse.send_events([
+    mouse.send_events([
         *desired_position, 0, move_absolute_flag | left_click_flag
     ],
     [

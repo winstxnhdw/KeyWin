@@ -1,5 +1,7 @@
 class KeyCodes:
-
+    """
+    Pre-mapped key codes based on Microsoft's [Virtual-Key Codes](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes)
+    """
     VK_LBUTTON             = 0x01
     VK_RBUTTON             = 0x02
     VK_CANCEL              = 0x03
