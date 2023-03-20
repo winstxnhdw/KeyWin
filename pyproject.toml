@@ -22,3 +22,14 @@ classifiers = [
 
 [tool.setuptools]
 packages = ["keywin.send_input"]
+
+[tool.pylint.format]
+good-names = [
+    "x", "y", "z"
+]
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-module-docstring",
+    "no-name-in-module"
+]

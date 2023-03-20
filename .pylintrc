@@ -1,7 +1,0 @@
-[FORMAT]
-good-names=x,y,z
-
-[MESSAGES CONTROL]
-disable=
-    missing-module-docstring,
-    no-name-in-module,
