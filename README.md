@@ -368,3 +368,11 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
     1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
     3    0.000    0.000    0.000    0.000 {method 'startswith' of 'str' objects}
 ```
+
+## Development
+
+You can build locally by running `setuptools`.
+
+```bash
+python setup.py build_ext --inplace
+```
