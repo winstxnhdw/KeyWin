@@ -20,9 +20,6 @@ classifiers = [
 "Homepage" = "https://github.com/winstxnhdw/KeyWin"
 "Bug Tracker" = "https://github.com/winstxnhdw/KeyWin/issues"
 
-[tool.setuptools]
-packages = ["keywin.send_input"]
-
 [tool.pylint.format]
 good-names = [
     "x", "y", "z"
