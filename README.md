@@ -130,7 +130,7 @@ from keywin import mouse, MouseCodes
 class Bot:
 
     def __init__(self):
-        
+
         self.left_click_event = mouse.create_event(
             MouseCodes.MOUSEEVENTF_LEFTDOWN | MouseCodes.MOUSEEVENTF_LEFTUP, 100, 100
         )
@@ -177,7 +177,7 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
     1    0.000    0.000    0.000    0.000 keyboard.py:6(press)
     1    0.000    0.000    0.000    0.000 test.py:6(keywin)
     1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
-    1    0.000    0.000    0.000    0.000 {built-in method keywin.send_input.press_keyboard}        
+    1    0.000    0.000    0.000    0.000 {built-in method keywin.send_input.press_keyboard}
     1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
 ```
 
@@ -321,7 +321,7 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
     1    0.000    0.000    0.004    0.004 mouse.py:12(send_events)
     1    0.000    0.000    0.004    0.004 test.py:9(keywin)
     1    0.000    0.000    0.004    0.004 {built-in method builtins.exec}
-    1    0.004    0.004    0.004    0.004 {built-in method keywin.send_input.send_mouse_event}      
+    1    0.004    0.004    0.004    0.004 {built-in method keywin.send_input.send_mouse_event}
     1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
 ```
 
