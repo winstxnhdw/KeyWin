@@ -1,6 +1,7 @@
 # KeyWin
 
 [![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
+[![main.yml](https://github.com/winstxnhdw/KeyWin/actions/workflows/main.yml/badge.svg)](https://github.com/winstxnhdw/KeyWin/actions/workflows/main.yml)
 
 `KeyWin` is a fast Python wrapper for Win32's SendInput function using C extensions. It is designed to be used in applications that require low-latency inputs.
 

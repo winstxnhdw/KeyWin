@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  push:
+    paths:
+      - 'keywin/**'
+      - '.github/workflows/main.yml'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Create requirements.txt
+        run: echo "keywin @ git+https://github.com/winstxnhdw/KeyWin@${{ github.sha }}" > requirements.txt
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install KeyWin
+        run: pip install -r requirements.txt
+
+      - name: Mini smoke test
+        run: python -c "from keywin import keyboard; keyboard.press(0x5B, 0x44)"
