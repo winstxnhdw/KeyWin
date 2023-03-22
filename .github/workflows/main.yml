@@ -5,6 +5,8 @@ on:
     paths:
       - 'keywin/**'
       - '.github/workflows/main.yml'
+      - 'setup.py'
+      - 'pyproject.toml'
 
 jobs:
   build:
