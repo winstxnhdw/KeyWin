@@ -28,5 +28,7 @@ good-names = [
 [tool.pylint.messages_control]
 disable = [
     "missing-module-docstring",
-    "no-name-in-module"
+    "no-name-in-module",
+    "useless-import-alias",
+    "line-too-long",
 ]
