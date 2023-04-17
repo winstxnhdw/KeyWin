@@ -1,4 +1,4 @@
-name: Auto-Merge
+name: Depdendabot
 
 on: pull_request
 
