@@ -3,44 +3,54 @@
 
 static PyObject* press_keyboard(PyObject *self, PyObject *args) {
     PyObject* key_tuple;
-    
+
     if (!PyArg_ParseTuple(args, "O", &key_tuple)) return NULL;
 
     const UINT key_list_length = (UINT)PyObject_Length(key_tuple);
     const UINT inputs_length = key_list_length * 2;
     const int input_size = sizeof(INPUT);
     INPUT* inputs = malloc(input_size * inputs_length);
-    
+
+    if (inputs == NULL) {
+        PyErr_SetString(PyExc_MemoryError, "Unable to allocate memory for inputs.");
+        return NULL;
+    }
+
     for (UINT i = 0; i < key_list_length; i++) {
         PyObject* key        = PyTuple_GetItem(key_tuple, i);
         inputs[i].type       = INPUT_KEYBOARD;
         inputs[i].ki.wVk     = (WORD)PyLong_AsLong(key);
         inputs[i].ki.dwFlags = 0;
-    }
 
-    for (UINT i = key_list_length; i < inputs_length; i++) {
-        inputs[i].type       = INPUT_KEYBOARD;
-        inputs[i].ki.wVk     = inputs[i - key_list_length].ki.wVk;
-        inputs[i].ki.dwFlags = KEYEVENTF_KEYUP;
+        const UINT release_index = i + key_list_length;
+        inputs[release_index].type       = INPUT_KEYBOARD;
+        inputs[release_index].ki.wVk     = inputs[i].ki.wVk;
+        inputs[release_index].ki.dwFlags = KEYEVENTF_KEYUP;
     }
 
     if (SendInput(inputs_length, inputs, input_size) != inputs_length) {
-        free(inputs);
         PyErr_SetString(PyExc_RuntimeError, "press_keyboard failed.");
+        free(inputs);
         return NULL;
     }
 
+    free(inputs);
     Py_RETURN_NONE;
 }
 
 static PyObject* send_mouse_event(PyObject *self, PyObject *args) {
     PyObject* mouse_event_list;
-    
+
     if (!PyArg_ParseTuple(args, "O", &mouse_event_list)) return NULL;
 
     const Py_ssize_t mouse_events_length = PyObject_Length(mouse_event_list);
     const int input_size = sizeof(INPUT);
     INPUT* inputs = malloc(input_size * mouse_events_length);
+
+    if (inputs == NULL) {
+        PyErr_SetString(PyExc_MemoryError, "Unable to allocate memory for inputs.");
+        return NULL;
+    }
 
     for (Py_ssize_t i = 0; i < mouse_events_length; i++) {
         PyObject* mouse_event = PyTuple_GetItem(mouse_event_list, i);
@@ -54,11 +64,12 @@ static PyObject* send_mouse_event(PyObject *self, PyObject *args) {
     }
 
     if (SendInput((UINT)mouse_events_length, inputs, input_size) != mouse_events_length) {
-        free(inputs);
         PyErr_SetString(PyExc_RuntimeError, "send_mouse_event failed.");
+        free(inputs);
         return NULL;
     }
-    
+
+    free(inputs);
     Py_RETURN_NONE;
 }
 
