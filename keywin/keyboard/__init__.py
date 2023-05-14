@@ -1,12 +1,11 @@
-from typing import Iterable
+from itertools import groupby
 
 from keywin.keyboard.codes import Typables
 from keywin.keyboard.exceptions import UnknownTypableException
-from keywin.keyboard.utils import flatten
 from keywin.send_input import press_keyboard
 
 
-def convert_to_key_code(string: str) -> Iterable[int]:
+def convert_to_key_code(string: str) -> list[list[int]]:
     """
     Summary
     -------
@@ -21,7 +20,18 @@ def convert_to_key_code(string: str) -> Iterable[int]:
     key_codes (Iterable[int]) : converted key code(s)
     """
     try:
-        return flatten(Typables.table[character] for character in string)
+        key_codes: list[list[int]] = []
+
+        for key_with_modifier, group in groupby((Typables.table[character] for character in string), lambda x: isinstance(x, list)):
+            group_list = list(group)
+
+            if key_with_modifier:
+                key_codes.extend(group_list)  # type: ignore
+
+            else:
+                key_codes.append(group_list)  # type: ignore
+
+        return key_codes
 
     except KeyError as error:
         raise UnknownTypableException from error
@@ -50,4 +60,5 @@ def write(string: str):
     ----------
     string (str) : string to type
     """
-    press(*convert_to_key_code(string))
+    for key_codes in convert_to_key_code(string):
+        press(*key_codes)
