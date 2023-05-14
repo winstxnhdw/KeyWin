@@ -2,7 +2,7 @@ class MouseCodes:
     """
     Summary
     -------
-    Pre-mapped mouse codes based on [MOUSEINPUT](https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-mouseinput)
+    pre-mapped mouse codes based on [MOUSEINPUT](https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-mouseinput)
     """
     XBUTTON1                    = 0x0001
     XBUTTON2                    = 0x0002

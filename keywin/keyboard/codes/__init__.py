@@ -1,6 +1,8 @@
 class KeyCodes:
     """
-    Pre-mapped key codes based on Microsoft's [Virtual-Key Codes](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes)
+    Summary
+    -------
+    pre-mapped key codes based on Microsoft's [Virtual-Key Codes](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes)
     """
     VK_LBUTTON             = 0x01
     VK_RBUTTON             = 0x02
@@ -174,3 +176,112 @@ class KeyCodes:
     VK_NONAME              = 0xFC
     VK_PA1                 = 0xFD
     VK_OEM_CLEAR           = 0xFE
+
+
+class Typables:
+    '''
+    Summary
+    -------
+    pre-mapped typable characters based on Microsoft's [Virtual-Key Codes](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes)
+    '''
+    table = {
+        'a': [KeyCodes.VK_A],
+        'b': [KeyCodes.VK_B],
+        'c': [KeyCodes.VK_C],
+        'd': [KeyCodes.VK_D],
+        'e': [KeyCodes.VK_E],
+        'f': [KeyCodes.VK_F],
+        'g': [KeyCodes.VK_G],
+        'h': [KeyCodes.VK_H],
+        'i': [KeyCodes.VK_I],
+        'j': [KeyCodes.VK_J],
+        'k': [KeyCodes.VK_K],
+        'l': [KeyCodes.VK_L],
+        'm': [KeyCodes.VK_M],
+        'n': [KeyCodes.VK_N],
+        'o': [KeyCodes.VK_O],
+        'p': [KeyCodes.VK_P],
+        'q': [KeyCodes.VK_Q],
+        'r': [KeyCodes.VK_R],
+        's': [KeyCodes.VK_S],
+        't': [KeyCodes.VK_T],
+        'u': [KeyCodes.VK_U],
+        'v': [KeyCodes.VK_V],
+        'w': [KeyCodes.VK_W],
+        'x': [KeyCodes.VK_X],
+        'y': [KeyCodes.VK_Y],
+        'z': [KeyCodes.VK_Z],
+        'A': [KeyCodes.VK_SHIFT, KeyCodes.VK_A],
+        'B': [KeyCodes.VK_SHIFT, KeyCodes.VK_B],
+        'C': [KeyCodes.VK_SHIFT, KeyCodes.VK_C],
+        'D': [KeyCodes.VK_SHIFT, KeyCodes.VK_D],
+        'E': [KeyCodes.VK_SHIFT, KeyCodes.VK_E],
+        'F': [KeyCodes.VK_SHIFT, KeyCodes.VK_F],
+        'G': [KeyCodes.VK_SHIFT, KeyCodes.VK_G],
+        'H': [KeyCodes.VK_SHIFT, KeyCodes.VK_H],
+        'I': [KeyCodes.VK_SHIFT, KeyCodes.VK_I],
+        'J': [KeyCodes.VK_SHIFT, KeyCodes.VK_J],
+        'K': [KeyCodes.VK_SHIFT, KeyCodes.VK_K],
+        'L': [KeyCodes.VK_SHIFT, KeyCodes.VK_L],
+        'M': [KeyCodes.VK_SHIFT, KeyCodes.VK_M],
+        'N': [KeyCodes.VK_SHIFT, KeyCodes.VK_N],
+        'O': [KeyCodes.VK_SHIFT, KeyCodes.VK_O],
+        'P': [KeyCodes.VK_SHIFT, KeyCodes.VK_P],
+        'Q': [KeyCodes.VK_SHIFT, KeyCodes.VK_Q],
+        'R': [KeyCodes.VK_SHIFT, KeyCodes.VK_R],
+        'S': [KeyCodes.VK_SHIFT, KeyCodes.VK_S],
+        'T': [KeyCodes.VK_SHIFT, KeyCodes.VK_T],
+        'U': [KeyCodes.VK_SHIFT, KeyCodes.VK_U],
+        'V': [KeyCodes.VK_SHIFT, KeyCodes.VK_V],
+        'W': [KeyCodes.VK_SHIFT, KeyCodes.VK_W],
+        'X': [KeyCodes.VK_SHIFT, KeyCodes.VK_X],
+        'Y': [KeyCodes.VK_SHIFT, KeyCodes.VK_Y],
+        'Z': [KeyCodes.VK_SHIFT, KeyCodes.VK_Z],
+        '0': [KeyCodes.VK_0],
+        '1': [KeyCodes.VK_1],
+        '2': [KeyCodes.VK_2],
+        '3': [KeyCodes.VK_3],
+        '4': [KeyCodes.VK_4],
+        '5': [KeyCodes.VK_5],
+        '6': [KeyCodes.VK_6],
+        '7': [KeyCodes.VK_7],
+        '8': [KeyCodes.VK_8],
+        '9': [KeyCodes.VK_9],
+        ' ': [KeyCodes.VK_SPACE],
+        ')': [KeyCodes.VK_SHIFT, KeyCodes.VK_0],
+        '!': [KeyCodes.VK_SHIFT, KeyCodes.VK_1],
+        '@': [KeyCodes.VK_SHIFT, KeyCodes.VK_2],
+        '#': [KeyCodes.VK_SHIFT, KeyCodes.VK_3],
+        '$': [KeyCodes.VK_SHIFT, KeyCodes.VK_4],
+        '%': [KeyCodes.VK_SHIFT, KeyCodes.VK_5],
+        '^': [KeyCodes.VK_SHIFT, KeyCodes.VK_6],
+        '&': [KeyCodes.VK_SHIFT, KeyCodes.VK_7],
+        '*': [KeyCodes.VK_SHIFT, KeyCodes.VK_8],
+        '(': [KeyCodes.VK_SHIFT, KeyCodes.VK_9],
+        '-': [KeyCodes.VK_OEM_MINUS],
+        '=': [KeyCodes.VK_OEM_PLUS],
+        ',': [KeyCodes.VK_OEM_COMMA],
+        '.': [KeyCodes.VK_OEM_PERIOD],
+        ';': [KeyCodes.VK_OEM_1],
+        '/': [KeyCodes.VK_OEM_2],
+        '`': [KeyCodes.VK_OEM_3],
+        '[': [KeyCodes.VK_OEM_4],
+        '\\': [KeyCodes.VK_OEM_5],
+        ']': [KeyCodes.VK_OEM_6],
+        '\'': [KeyCodes.VK_OEM_7],
+        '_': [KeyCodes.VK_SHIFT, KeyCodes.VK_OEM_MINUS],
+        '+': [KeyCodes.VK_SHIFT, KeyCodes.VK_OEM_PLUS],
+        '<': [KeyCodes.VK_SHIFT, KeyCodes.VK_OEM_COMMA],
+        '>': [KeyCodes.VK_SHIFT, KeyCodes.VK_OEM_PERIOD],
+        ':': [KeyCodes.VK_SHIFT, KeyCodes.VK_OEM_1],
+        '?': [KeyCodes.VK_SHIFT, KeyCodes.VK_OEM_2],
+        '~': [KeyCodes.VK_SHIFT, KeyCodes.VK_OEM_3],
+        '{': [KeyCodes.VK_SHIFT, KeyCodes.VK_OEM_4],
+        '|': [KeyCodes.VK_SHIFT, KeyCodes.VK_OEM_5],
+        '}': [KeyCodes.VK_SHIFT, KeyCodes.VK_OEM_6],
+        '\"': [KeyCodes.VK_SHIFT, KeyCodes.VK_OEM_7],
+        '\n': [KeyCodes.VK_RETURN],
+        '\r': [KeyCodes.VK_RETURN],
+        '\t': [KeyCodes.VK_TAB],
+        '\b': [KeyCodes.VK_BACK]
+    }

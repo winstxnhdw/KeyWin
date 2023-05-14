@@ -6,7 +6,7 @@ def create_event(flags: int, x: int=0, y: int=0, mouse_data: int=0) -> list[int]
     """
     Summary
     -------
-    Helper function to create a mouse event
+    helper function to create a mouse event
 
     Parameters
     ----------
@@ -22,7 +22,7 @@ def send_events(*inputs: list[int]):
     """
     Summary
     -------
-    Low-level function to send mouse events
+    low-level function to send mouse events
 
     Parameters
     ----------
@@ -35,7 +35,7 @@ def click(flags: int, mouse_data: int=0):
     """
     Summary
     -------
-    Generic click function
+    generic click function
 
     Parameters
     ----------
@@ -49,7 +49,7 @@ def left_click():
     """
     Summary
     -------
-    Click the left mouse button
+    click the left mouse button
     """
     click(MouseCodes.MOUSEEVENTF_LEFTDOWN | MouseCodes.MOUSEEVENTF_LEFTUP)
 
@@ -58,7 +58,7 @@ def right_click():
     """
     Summary
     -------
-    Click the right mouse button
+    click the right mouse button
     """
     click(MouseCodes.MOUSEEVENTF_RIGHTDOWN | MouseCodes.MOUSEEVENTF_RIGHTUP)
 
@@ -67,7 +67,7 @@ def middle_click():
     """
     Summary
     -------
-    Click the middle mouse button
+    click the middle mouse button
     """
     click(MouseCodes.MOUSEEVENTF_MIDDLEDOWN | MouseCodes.MOUSEEVENTF_MIDDLEUP)
 
@@ -76,7 +76,7 @@ def xbutton1_click():
     """
     Summary
     -------
-    Click `xbutton1`
+    click `xbutton1`
     """
     click(MouseCodes.MOUSEEVENTF_XDOWN | MouseCodes.MOUSEEVENTF_XUP, MouseCodes.XBUTTON1)
 
@@ -85,7 +85,7 @@ def xbutton2_click():
     """
     Summary
     -------
-    Click `xbutton2`
+    click `xbutton2`
     """
     click(MouseCodes.MOUSEEVENTF_XDOWN | MouseCodes.MOUSEEVENTF_XUP, MouseCodes.XBUTTON2)
 
@@ -94,7 +94,7 @@ def left_press():
     """
     Summary
     -------
-    Press the left mouse button
+    press the left mouse button
     """
     click(MouseCodes.MOUSEEVENTF_LEFTDOWN)
 
@@ -103,7 +103,7 @@ def left_release():
     """
     Summary
     -------
-    Release the left mouse button
+    release the left mouse button
     """
     click(MouseCodes.MOUSEEVENTF_LEFTUP)
 
@@ -111,7 +111,7 @@ def right_press():
     """
     Summary
     -------
-    Press the right mouse button
+    press the right mouse button
     """
     click(MouseCodes.MOUSEEVENTF_RIGHTDOWN)
 
@@ -120,7 +120,7 @@ def right_release():
     """
     Summary
     -------
-    Release the right mouse button
+    release the right mouse button
     """
     click(MouseCodes.MOUSEEVENTF_RIGHTUP)
 
@@ -129,7 +129,7 @@ def middle_press():
     """
     Summary
     -------
-    Press the middle mouse button
+    press the middle mouse button
     """
     click(MouseCodes.MOUSEEVENTF_MIDDLEDOWN)
 
@@ -138,7 +138,7 @@ def middle_release():
     """
     Summary
     -------
-    Release the middle mouse button
+    release the middle mouse button
     """
     click(MouseCodes.MOUSEEVENTF_MIDDLEUP)
 
@@ -147,7 +147,7 @@ def xbutton1_press():
     """
     Summary
     -------
-    Press `xbutton1`
+    press `xbutton1`
     """
     click(MouseCodes.MOUSEEVENTF_XDOWN, MouseCodes.XBUTTON1)
 
@@ -156,7 +156,7 @@ def xbutton1_release():
     """
     Summary
     -------
-    Release `xbutton1`
+    release `xbutton1`
     """
     click(MouseCodes.MOUSEEVENTF_XUP, MouseCodes.XBUTTON1)
 
@@ -165,7 +165,7 @@ def xbutton2_press():
     """
     Summary
     -------
-    Press `xbutton2`
+    press `xbutton2`
     """
     click(MouseCodes.MOUSEEVENTF_XDOWN, MouseCodes.XBUTTON2)
 
@@ -174,7 +174,7 @@ def xbutton2_release():
     """
     Summary
     -------
-    Release `xbutton2`
+    release `xbutton2`
     """
     click(MouseCodes.MOUSEEVENTF_XUP, MouseCodes.XBUTTON2)
 
@@ -183,7 +183,7 @@ def move_relative(x: int, y: int, flag: int=0):
     """
     Summary
     -------
-    Move mouse relative to the current position
+    move mouse relative to the current position
 
     Parameters
     ----------
@@ -198,7 +198,7 @@ def move(x: int, y: int):
     """
     Summary
     -------
-    Move mouse to an absolute position
+    move mouse to an absolute position
 
     Parameters
     ----------
@@ -212,7 +212,7 @@ def scroll(scroll_delta: int, flags: int=MouseCodes.MOUSEEVENTF_WHEEL):
     """
     Summary
     -------
-    Scroll the vertical mouse wheel
+    scroll the vertical mouse wheel
 
     Parameters
     ----------
@@ -226,7 +226,7 @@ def scroll_horizontal(scroll_delta: int):
     """
     Summary
     -------
-    Scroll the horizontal mouse wheel
+    scroll the horizontal mouse wheel
 
     Parameters
     ----------
