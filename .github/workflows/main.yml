@@ -10,13 +10,10 @@ on:
       - pyproject.toml
 
 jobs:
-  test:
+  install:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
       - name: Create requirements.txt
         run: echo "keywin @ git+https://github.com/winstxnhdw/KeyWin@${{ github.sha }}" > requirements.txt
 
@@ -29,14 +26,30 @@ jobs:
       - name: Install KeyWin
         run: pip install -r requirements.txt
 
+      - name: Mini smoke test
+        run: python -c "from keywin import keyboard; keyboard.press(0x5B, 0x44)"
+
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
       - name: Install the development dependencies
         run: pip install -r requirements.dev.txt
+
+      - name: Build the extension
+        run: python setup.py build_ext --inplace
 
       - name: Run typechecker
         run: pyright
 
       - name: Run tests
         run: pytest
-
-      - name: Mini smoke test
-        run: python -c "from keywin import keyboard; keyboard.press(0x5B, 0x44)"
