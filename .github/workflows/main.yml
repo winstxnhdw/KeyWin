@@ -1,18 +1,22 @@
-name: Build
+name: Test
 
 on:
   push:
     paths:
       - 'keywin/**'
-      - '.github/workflows/main.yml'
-      - 'setup.py'
-      - 'pyproject.toml'
+      - 'tests/**'
+      - .github/workflows/main.yml
+      - setup.py
+      - pyproject.toml
 
 jobs:
-  build:
+  test:
     runs-on: windows-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Create requirements.txt
         run: echo "keywin @ git+https://github.com/winstxnhdw/KeyWin@${{ github.sha }}" > requirements.txt
 
@@ -24,6 +28,15 @@ jobs:
 
       - name: Install KeyWin
         run: pip install -r requirements.txt
+
+      - name: Install the development dependencies
+        run: pip install -r requirements.dev.txt
+
+      - name: Run typechecker
+        run: pyright
+
+      - name: Run tests
+        run: pytest
 
       - name: Mini smoke test
         run: python -c "from keywin import keyboard; keyboard.press(0x5B, 0x44)"
