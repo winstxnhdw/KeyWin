@@ -14,11 +14,6 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
-
       - name: Install KeyWin
         run: pip install git+https://github.com/winstxnhdw/KeyWin
 
@@ -38,11 +33,11 @@ jobs:
           python-version: 3.11
           cache: pip
 
-      - name: Build the extension
-        run: python setup.py build_ext --inplace
-
       - name: Install the development dependencies
         run: pip install -r requirements.txt
+
+      - name: Build the extension
+        run: python setup.py build_ext --inplace
 
       - name: Run linter
         run: pylint $(git ls-files '*.py')
