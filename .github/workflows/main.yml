@@ -3,8 +3,8 @@ name: Test
 on:
   push:
     paths:
-      - 'keywin/**'
-      - 'tests/**'
+      - keywin/**
+      - tests/**
       - .github/workflows/main.yml
       - setup.py
       - pyproject.toml
@@ -14,17 +14,13 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Create requirements.txt
-        run: echo "keywin @ git+https://github.com/winstxnhdw/KeyWin@${{ github.sha }}" > requirements.txt
-
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: 3.11
 
       - name: Install KeyWin
-        run: pip install -r requirements.txt
+        run: pip install git+https://github.com/winstxnhdw/KeyWin
 
       - name: Mini smoke test
         run: python -c "from keywin import keyboard; keyboard.press(0x5B, 0x44)"
@@ -39,14 +35,17 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: 'pip'
-
-      - name: Install the development dependencies
-        run: pip install -r requirements.dev.txt
+          python-version: 3.11
+          cache: pip
 
       - name: Build the extension
         run: python setup.py build_ext --inplace
+
+      - name: Install the development dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run linter
+        run: pylint $(git ls-files '*.py')
 
       - name: Run typechecker
         run: pyright
