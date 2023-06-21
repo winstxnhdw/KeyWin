@@ -10,7 +10,7 @@ authors = [
 ]
 description = "A fast Python wrapper for Win32's SendInput function."
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Operating System :: Microsoft :: Windows",
