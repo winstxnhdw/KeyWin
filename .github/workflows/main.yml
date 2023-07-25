@@ -10,17 +10,45 @@ on:
       - pyproject.toml
 
 jobs:
-  install:
+  type-check:
     runs-on: windows-latest
 
     steps:
-      - name: Install KeyWin
-        run: pip install git+https://github.com/winstxnhdw/KeyWin
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Mini smoke test
-        run: python -c "from keywin import keyboard; keyboard.press(0x5B, 0x44)"
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: pip
 
-  test:
+      - name: Install the development dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run typechecker
+        run: pyright
+
+  lint:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: pip
+
+      - name: Install the development dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run linter
+        run: pylint $(git ls-files '*.py')
+
+  build:
     runs-on: windows-latest
 
     steps:
@@ -39,11 +67,15 @@ jobs:
       - name: Build the extension
         run: python setup.py build_ext --inplace
 
-      - name: Run linter
-        run: pylint $(git ls-files '*.py')
-
-      - name: Run typechecker
-        run: pyright
-
       - name: Run tests
         run: pytest
+
+  install:
+    runs-on: windows-latest
+
+    steps:
+      - name: Install KeyWin
+        run: pip install git+https://github.com/winstxnhdw/KeyWin
+
+      - name: Mini smoke test
+        run: python -c "from keywin import keyboard; keyboard.press(0x5B, 0x44)"
