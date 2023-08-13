@@ -2,7 +2,7 @@ from keywin.mouse.codes import MouseCodes
 from keywin.send_input import send_mouse_event
 
 
-def create_event(flags: int, x: int=0, y: int=0, mouse_data: int=0) -> list[int]:
+def create_event(flags: int, x: int = 0, y: int = 0, mouse_data: int = 0) -> list[int]:
     """
     Summary
     -------
@@ -31,7 +31,7 @@ def send_events(*inputs: list[int]):
     send_mouse_event(inputs)
 
 
-def click(flags: int, mouse_data: int=0):
+def click(flags: int, mouse_data: int = 0):
     """
     Summary
     -------
@@ -179,7 +179,7 @@ def xbutton2_release():
     click(MouseCodes.MOUSEEVENTF_XUP, MouseCodes.XBUTTON2)
 
 
-def move_relative(x: int, y: int, flag: int=0):
+def move_relative(x: int, y: int, flag: int = 0):
     """
     Summary
     -------
@@ -208,7 +208,7 @@ def move(x: int, y: int):
     move_relative(x, y, MouseCodes.MOUSEEVENTF_ABSOLUTE)
 
 
-def scroll(scroll_delta: int, flags: int=MouseCodes.MOUSEEVENTF_WHEEL):
+def scroll(scroll_delta: int, flags: int = MouseCodes.MOUSEEVENTF_WHEEL):
     """
     Summary
     -------
