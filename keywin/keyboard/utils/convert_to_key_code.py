@@ -21,14 +21,12 @@ def convert_to_key_code(string: str) -> list[list[int]]:
     try:
         key_codes: list[list[int]] = []
 
-        for key_with_modifier, group in groupby((Typables.table[character] for character in string), lambda x: isinstance(x, list)):
-            group_list = list(group)
-
-            if key_with_modifier:
-                key_codes.extend(group_list)
+        for key, group in groupby((Typables.table[character] for character in string), type):
+            if key == list:
+                key_codes.extend(group)  # pyright: ignore[reportGeneralTypeIssues]
 
             else:
-                key_codes.append(group_list)
+                key_codes.append(list(group))  # pyright: ignore[reportGeneralTypeIssues]
 
         return key_codes
 

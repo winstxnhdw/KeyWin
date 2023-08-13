@@ -41,3 +41,9 @@ disable = [
     "line-too-long",
     "too-few-public-methods"
 ]
+
+[tool.pyright]
+typeCheckingMode = "strict"
+reportUnknownVariableType = false
+reportUnknownMemberType = false
+reportMissingTypeStubs = false
