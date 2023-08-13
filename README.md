@@ -165,7 +165,9 @@ class Bot:
 
 ### Keyboard Benchmark
 
-KeyWin
+<details>
+
+<summary>KeyWin</summary>
 
 ```python
 import cProfile as profile
@@ -182,6 +184,8 @@ if __name__ == '__main__':
     profile.run('keywin()')
 ```
 
+</details>
+
 ```txt
 6 function calls in 0.000 seconds
 
@@ -194,7 +198,9 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
     1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
 ```
 
-[keyboard](https://github.com/boppreh/keyboard)
+<details>
+
+<summary><a href="https://github.com/boppreh/keyboard">boppreh/keyboard</a></summary>
 
 ```python
 import cProfile as profile
@@ -210,6 +216,8 @@ def keyboard():
 if __name__ == '__main__':
     profile.run('keyboard()')
 ```
+
+</details>
 
 ```txt
 172510 function calls (172499 primitive calls) in 0.177 seconds
@@ -298,7 +306,9 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 
 ### Mouse Benchmark
 
-KeyWin
+<details>
+
+<summary>KeyWin</summary>
 
 ```python
 import cProfile as profile
@@ -326,6 +336,8 @@ if __name__ == '__main__':
     profile.run('keywin()')
 ```
 
+</details>
+
 ```txt
 6 function calls in 0.004 seconds
 
@@ -338,7 +350,9 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
     1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
 ```
 
-[mouse](https://github.com/boppreh/mouse)
+<details>
+
+<summary><a href="https://github.com/boppreh/mouse">boppreh/mouse</a></summary>
 
 ```python
 import cProfile as profile
@@ -356,6 +370,8 @@ def mouse():
 if __name__ == '__main__':
     profile.run('mouse()')
 ```
+
+</details>
 
 ```txt
 35 function calls in 0.008 seconds
