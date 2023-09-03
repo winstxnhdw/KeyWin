@@ -35,5 +35,5 @@ jobs:
       - name: Commit changes
         run: |
           git add .
-          git commit -m "style: sort Python imports" | true
+          git commit -m "style: sort Python imports" || true
           git push
