@@ -286,7 +286,7 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
  2016    0.000    0.000    0.000    0.000 {built-in method builtins.chr}
     1    0.000    0.000    0.177    0.177 {built-in method builtins.exec}
 21256    0.002    0.000    0.002    0.000 {built-in method builtins.isinstance}
-30886/30881    0.003    0.000    0.003    0.000 {built-in method builtins.len}
+30886    0.003    0.000    0.003    0.000 {built-in method builtins.len}
    12    0.000    0.000    0.000    0.000 {built-in method builtins.min}
     2    0.000    0.000    0.000    0.000 {built-in method builtins.ord}
     2    0.000    0.000    0.000    0.000 {built-in method builtins.setattr}
