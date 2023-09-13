@@ -4,14 +4,16 @@
 static PyObject* press_keyboard(PyObject *self, PyObject *args) {
     PyObject* key_tuple;
 
-    if (!PyArg_ParseTuple(args, "O", &key_tuple)) return NULL;
+    if (!PyArg_ParseTuple(args, "O", &key_tuple)) {
+        return NULL;
+    }
 
     const UINT key_list_length = (UINT)PyObject_Length(key_tuple);
     const UINT inputs_length = key_list_length * 2;
     const int input_size = sizeof(INPUT);
     INPUT* inputs = malloc(input_size * inputs_length);
 
-    if (inputs == NULL) {
+    if (!inputs) {
         PyErr_SetString(PyExc_MemoryError, "Unable to allocate memory for inputs.");
         return NULL;
     }
@@ -41,13 +43,15 @@ static PyObject* press_keyboard(PyObject *self, PyObject *args) {
 static PyObject* send_mouse_event(PyObject *self, PyObject *args) {
     PyObject* mouse_event_list;
 
-    if (!PyArg_ParseTuple(args, "O", &mouse_event_list)) return NULL;
+    if (!PyArg_ParseTuple(args, "O", &mouse_event_list)) {
+        return NULL;
+    }
 
     const Py_ssize_t mouse_events_length = PyObject_Length(mouse_event_list);
     const int input_size = sizeof(INPUT);
     INPUT* inputs = malloc(input_size * mouse_events_length);
 
-    if (inputs == NULL) {
+    if (!inputs) {
         PyErr_SetString(PyExc_MemoryError, "Unable to allocate memory for inputs.");
         return NULL;
     }
