@@ -23,16 +23,16 @@ static PyObject* press_keyboard(PyObject *self, PyObject *args) {
         Py_RETURN_FALSE;
     }
 
-    for (UINT i = 0; i < number_of_keys; i++) {
+    for (UINT i = 0, j = number_of_keys; i < number_of_keys; i++, j++) {
         PyObject* key        = PyTuple_GetItem(key_tuple, i);
+
         inputs[i].type       = INPUT_KEYBOARD;
         inputs[i].ki.wVk     = (WORD)PyLong_AsLong(key);
         inputs[i].ki.dwFlags = 0;
 
-        const UINT release_index = i + number_of_keys;
-        inputs[release_index].type       = INPUT_KEYBOARD;
-        inputs[release_index].ki.wVk     = inputs[i].ki.wVk;
-        inputs[release_index].ki.dwFlags = KEYEVENTF_KEYUP;
+        inputs[j].type       = INPUT_KEYBOARD;
+        inputs[j].ki.wVk     = inputs[i].ki.wVk;
+        inputs[j].ki.dwFlags = KEYEVENTF_KEYUP;
     }
 
     if (SendInput(inputs_length, inputs, input_size) != inputs_length) {
@@ -76,7 +76,7 @@ static PyObject* send_mouse_event(PyObject *self, PyObject *args) {
         inputs[i].mi.time      = 0;
     }
 
-    if (SendInput((UINT)number_of_events, inputs, input_size) != number_of_events) {
+    if (SendInput(number_of_events, inputs, input_size) != number_of_events) {
         free(inputs);
         Py_RETURN_FALSE;
     }
