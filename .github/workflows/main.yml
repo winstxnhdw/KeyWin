@@ -3,11 +3,9 @@ name: Test
 on:
   push:
     paths:
-      - keywin/**
-      - tests/**
       - .github/workflows/main.yml
-      - setup.py
       - pyproject.toml
+      - '**.py'
 
 jobs:
   type-check:
