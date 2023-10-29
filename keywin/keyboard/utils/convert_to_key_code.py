@@ -1,9 +1,11 @@
+from functools import lru_cache
 from itertools import groupby
 
 from keywin.keyboard.codes import Typables
 from keywin.keyboard.exceptions import UnknownTypableException
 
 
+@lru_cache(maxsize=None)
 def convert_to_key_code(string: str) -> list[list[int]]:
     """
     Summary
