@@ -1,7 +1,12 @@
 #include <Python.h>
 #include <Windows.h>
 
-static PyObject* press_keyboard(PyObject *self, PyObject *args) {
+static PyObject* dispose(void* memory) {
+    free(memory);
+    Py_RETURN_FALSE;
+}
+
+static PyObject* press_keyboard(PyObject* self, PyObject* args) {
     PyObject* key_tuple;
 
     if (!PyArg_ParseTuple(args, "O", &key_tuple)) {
@@ -25,26 +30,30 @@ static PyObject* press_keyboard(PyObject *self, PyObject *args) {
 
     for (UINT i = 0, j = number_of_keys; i < number_of_keys; i++, j++) {
         PyObject* key        = PyTuple_GetItem(key_tuple, i);
+        const WORD key_code = (WORD)PyLong_AsLong(key);
+
+        if (!key || (key_code == -1 && PyErr_Occurred())) {
+            return dispose(inputs);
+        }
 
         inputs[i].type       = INPUT_KEYBOARD;
-        inputs[i].ki.wVk     = (WORD)PyLong_AsLong(key);
+        inputs[i].ki.wVk     = key_code;
         inputs[i].ki.dwFlags = 0;
 
         inputs[j].type       = INPUT_KEYBOARD;
-        inputs[j].ki.wVk     = inputs[i].ki.wVk;
+        inputs[j].ki.wVk     = key_code;
         inputs[j].ki.dwFlags = KEYEVENTF_KEYUP;
     }
 
     if (SendInput(inputs_length, inputs, input_size) != inputs_length) {
-        free(inputs);
-        Py_RETURN_FALSE;
+        return dispose(inputs);
     }
 
     free(inputs);
     Py_RETURN_TRUE;
 }
 
-static PyObject* send_mouse_event(PyObject *self, PyObject *args) {
+static PyObject* send_mouse_event(PyObject* self, PyObject* args) {
     PyObject* mouse_event_list;
 
     if (!PyArg_ParseTuple(args, "O", &mouse_event_list)) {
@@ -67,18 +76,25 @@ static PyObject* send_mouse_event(PyObject *self, PyObject *args) {
 
     for (UINT i = 0; i < number_of_events; i++) {
         PyObject* mouse_event = PyTuple_GetItem(mouse_event_list, i);
+        PyObject* x = PyList_GetItem(mouse_event, 0);
+        PyObject* y = PyList_GetItem(mouse_event, 1);
+        PyObject* mouse_data = PyList_GetItem(mouse_event, 2);
+        PyObject* flags = PyList_GetItem(mouse_event, 3);
+
+        if (!mouse_event || !x || !y || !mouse_data || !flags) {
+            return dispose(inputs);
+        }
 
         inputs[i].type         = INPUT_MOUSE;
-        inputs[i].mi.dx        = PyLong_AsLong(PyList_GetItem(mouse_event, 0));
-        inputs[i].mi.dy        = PyLong_AsLong(PyList_GetItem(mouse_event, 1));
-        inputs[i].mi.mouseData = PyLong_AsUnsignedLong(PyList_GetItem(mouse_event, 2));
-        inputs[i].mi.dwFlags   = PyLong_AsUnsignedLong(PyList_GetItem(mouse_event, 3));
+        inputs[i].mi.dx        = PyLong_AsLong(x);
+        inputs[i].mi.dy        = PyLong_AsLong(y);
+        inputs[i].mi.mouseData = PyLong_AsUnsignedLong(mouse_data);
+        inputs[i].mi.dwFlags   = PyLong_AsUnsignedLong(flags);
         inputs[i].mi.time      = 0;
     }
 
     if (SendInput(number_of_events, inputs, input_size) != number_of_events) {
-        free(inputs);
-        Py_RETURN_FALSE;
+        return dispose(inputs);
     }
 
     free(inputs);
