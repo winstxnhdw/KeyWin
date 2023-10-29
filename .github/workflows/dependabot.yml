@@ -7,12 +7,6 @@ permissions:
 
 jobs:
   auto-merge:
-    if: ${{ github.actor == 'dependabot[bot]' }}
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Auto-merge Dependabot PRs
-        run: gh pr merge --auto --rebase "$PR_URL"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    uses: winstxnhdw/actions/.github/workflows/dependabot-public.yml@main
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
