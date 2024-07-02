@@ -2,7 +2,7 @@
 
 from typing import Iterable
 
-def send_mouse_event(inputs: Iterable[list[int]]) -> bool:
+def send_mouse_event(inputs: Iterable[tuple[int, int, int, int]]) -> bool:
     """
     Summary
     -------
@@ -10,10 +10,9 @@ def send_mouse_event(inputs: Iterable[list[int]]) -> bool:
 
     Parameters
     ----------
-    inputs (Iterable[list[int]]) : a list of valid mouse inputs
+    inputs (Iterable[tuple[int, int, int, int]]) : a list of valid mouse inputs
     """
     ...
-
 
 def press_keyboard(keys: Iterable[int]) -> bool:
     """

@@ -29,11 +29,13 @@ static PyObject* press_keyboard(PyObject* self, PyObject* args) {
         Py_RETURN_FALSE;
     }
 
+    int overflow = 0;
+
     for (UINT i = 0, j = number_of_keys; i < number_of_keys; i++, j++) {
         PyObject* key = PyTuple_GetItem(key_tuple, i);
-        const WORD key_code = (WORD)PyLong_AsLong(key);
+        const WORD key_code = (WORD)PyLong_AsLongAndOverflow(key, &overflow);
 
-        if (!key || key_code == -1 && PyErr_Occurred()) {
+        if (overflow) {
             return dispose_and_fail(inputs);
         }
 
@@ -75,14 +77,17 @@ static PyObject* send_mouse_event(PyObject* self, PyObject* args) {
         Py_RETURN_FALSE;
     }
 
+    int x_overflow = 0;
+    int y_overflow = 0;
+
     for (UINT i = 0; i < number_of_events; i++) {
         PyObject* mouse_event  = PyTuple_GetItem(mouse_event_list, i);
-        const LONG x           = PyLong_AsLong(PyList_GetItem(mouse_event, 0));
-        const LONG y           = PyLong_AsLong(PyList_GetItem(mouse_event, 1));
-        const DWORD mouse_data = PyLong_AsUnsignedLong(PyList_GetItem(mouse_event, 2));
-        const DWORD flags      = PyLong_AsUnsignedLong(PyList_GetItem(mouse_event, 3));
+        const LONG x           = PyLong_AsLongAndOverflow(PyTuple_GetItem(mouse_event, 0), &x_overflow);
+        const LONG y           = PyLong_AsLongAndOverflow(PyTuple_GetItem(mouse_event, 1), &y_overflow);
+        const DWORD mouse_data = PyLong_AsUnsignedLong(PyTuple_GetItem(mouse_event, 2));
+        const DWORD flags       = PyLong_AsUnsignedLong(PyTuple_GetItem(mouse_event, 3));
 
-        if (!mouse_event || !x || !y || !mouse_data || !flags || PyErr_ExceptionMatches(PyExc_OverflowError)) {
+        if (x_overflow || y_overflow) {
             return dispose_and_fail(inputs);
         }
 
