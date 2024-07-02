@@ -1,5 +1,5 @@
 from functools import lru_cache
-from itertools import groupby
+from itertools import chain, groupby
 
 from keywin.keyboard.codes import Typables
 from keywin.keyboard.exceptions import UnknownTypableException
@@ -23,12 +23,14 @@ def convert_to_key_code(string: str) -> list[list[int]]:
     try:
         key_codes: list[list[int]] = []
 
-        for key, group in groupby((Typables.table[character] for character in string), type):
-            if key == list:
-                key_codes.extend(group)  # pyright: ignore[reportGeneralTypeIssues]
+        for multi_key, group in groupby(
+            (Typables.table[character] for character in string), lambda codes: len(codes) > 1
+        ):
+            if multi_key:
+                key_codes.extend(group)
 
             else:
-                key_codes.append(list(group))  # pyright: ignore[reportGeneralTypeIssues]
+                key_codes.append(list(chain.from_iterable(group)))
 
         return key_codes
 
