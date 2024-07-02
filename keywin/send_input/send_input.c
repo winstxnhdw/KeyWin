@@ -79,15 +79,16 @@ static PyObject* send_mouse_event(PyObject* self, PyObject* args) {
 
     int x_overflow = 0;
     int y_overflow = 0;
+    int mouse_data_overflow = 0;
 
     for (UINT i = 0; i < number_of_events; i++) {
         PyObject* mouse_event  = PyTuple_GetItem(mouse_event_list, i);
         const LONG x           = PyLong_AsLongAndOverflow(PyTuple_GetItem(mouse_event, 0), &x_overflow);
         const LONG y           = PyLong_AsLongAndOverflow(PyTuple_GetItem(mouse_event, 1), &y_overflow);
-        const DWORD mouse_data = PyLong_AsUnsignedLong(PyTuple_GetItem(mouse_event, 2));
+        const DWORD mouse_data = PyLong_AsLongAndOverflow(PyTuple_GetItem(mouse_event, 2), &mouse_data_overflow);
         const DWORD flags       = PyLong_AsUnsignedLong(PyTuple_GetItem(mouse_event, 3));
 
-        if (x_overflow || y_overflow) {
+        if (x_overflow || y_overflow || mouse_data_overflow) {
             return dispose_and_fail(inputs);
         }
 
