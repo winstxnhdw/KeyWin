@@ -2,7 +2,7 @@ from keywin.keyboard.utils import convert_to_key_code
 from keywin.send_input import press_keyboard
 
 
-def press(*keys: int):
+def press(*keys: int) -> bool:
     """
     Summary
     -------
@@ -11,11 +11,15 @@ def press(*keys: int):
     Parameters
     ----------
     *keys (int) : key code(s)
+
+    Returns
+    -------
+    success (bool) : the success of the event
     """
-    press_keyboard(keys)
+    return press_keyboard(keys)
 
 
-def write(string: str):
+def write(string: str) -> list[bool]:
     """
     Summary
     -------
@@ -24,6 +28,9 @@ def write(string: str):
     Parameters
     ----------
     string (str) : string to type
+
+    Returns
+    -------
+    successes (list[bool]) : the success of the event(s)
     """
-    for key_codes in convert_to_key_code(string):
-        press(*key_codes)
+    return [press(*key_codes) for key_codes in convert_to_key_code(string)]
