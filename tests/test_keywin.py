@@ -1,7 +1,5 @@
 from keywin import KeyCodes
 from keywin.keyboard import press
-from keywin.keyboard.codes import Typables
-from keywin.keyboard.utils import convert_to_key_code
 from keywin.mouse import (
     left_click,
     left_press,
@@ -25,28 +23,13 @@ from keywin.mouse import (
 )
 
 
-def test_convert_to_key_code():
-    """
-    Summary
-    -------
-    test the `convert_to_key_code` function
-    """
-    assert convert_to_key_code("a") == [[KeyCodes.VK_A]]
-    assert convert_to_key_code("A") == [[KeyCodes.VK_SHIFT, KeyCodes.VK_A]]
-    assert convert_to_key_code("Hello!") == [
-        [KeyCodes.VK_SHIFT, KeyCodes.VK_H],
-        [KeyCodes.VK_E, KeyCodes.VK_L, KeyCodes.VK_L, KeyCodes.VK_O],
-        [KeyCodes.VK_SHIFT, KeyCodes.VK_1],
-    ]
-
-
 def test_press():
     """
     Summary
     -------
     test the `press` function
     """
-    assert all(press(*key_codes) for key_codes in Typables.table.values())
+    assert all(press(key) for key in KeyCodes.__dict__.values() if isinstance(key, int))
 
 
 def test_mouse_helpers():
