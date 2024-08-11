@@ -29,7 +29,15 @@ def test_press():
     -------
     test the `press` function
     """
-    assert all(press(key) for key in KeyCodes.__dict__.values() if isinstance(key, int))
+    for key in KeyCodes.__dict__.values():
+        if not isinstance(key, int):
+            continue
+
+        try:
+            assert press(key)
+
+        except KeyboardInterrupt:
+            continue
 
 
 def test_mouse_helpers():

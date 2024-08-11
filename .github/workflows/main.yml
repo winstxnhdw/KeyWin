@@ -15,17 +15,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.7
 
-      - name: Setup Python
-        uses: actions/setup-python@v5.1.1
+      - name: Setup PDM
+        uses: pdm-project/setup-pdm@v4
         with:
           python-version: '*'
-          cache: pip
+          cache: true
 
-      - name: Install the development dependencies
-        run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: pdm install
 
       - name: Run typechecker
-        run: pyright
+        run: pdm run pyright
 
   lint:
     runs-on: windows-latest
@@ -34,39 +34,36 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.7
 
-      - name: Setup Python
-        uses: actions/setup-python@v5.1.1
+      - name: Setup PDM
+        uses: pdm-project/setup-pdm@v4
         with:
           python-version: '*'
-          cache: pip
+          cache: true
 
-      - name: Install the development dependencies
-        run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: pdm install
 
       - name: Run linter
-        run: pylint --recursive=y .
+        run: pdm run pylint --recursive=y .
 
-  build:
+  test:
     runs-on: windows-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.7
 
-      - name: Setup Python
-        uses: actions/setup-python@v5.1.1
+      - name: Setup PDM
+        uses: pdm-project/setup-pdm@v4
         with:
           python-version: '*'
-          cache: pip
+          cache: true
 
-      - name: Install the development dependencies
-        run: pip install -r requirements.txt
-
-      - name: Build the extension
-        run: python setup.py build_ext --inplace
+      - name: Install dependencies
+        run: pdm install
 
       - name: Run tests
-        run: pytest
+        run: pdm run pytest
 
   install:
     runs-on: windows-latest

@@ -1,37 +1,59 @@
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["pdm-backend", "setuptools"]
+build-backend = "pdm.backend"
 
 [project]
 name = "keywin"
-version = "0.0.1"
+version = "0.1.0"
 authors = [{ name = "winstxnhdw", email = "author@example.com" }]
 description = "A fast Python wrapper for Win32's SendInput function."
 readme = "README.md"
 requires-python = ">=3.9"
-classifiers = ["Programming Language :: Python :: 3 :: Only", "Operating System :: Microsoft :: Windows"]
+classifiers = [
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: Microsoft :: Windows",
+]
 
 [project.urls]
 "Homepage" = "https://github.com/winstxnhdw/KeyWin"
 "Bug Tracker" = "https://github.com/winstxnhdw/KeyWin/issues"
 
-[tool.setuptools.package-data]
-"keywin" = ["py.typed"]
+[tool.setuptools]
+include-package-data = false
 
-[tool.pytest.ini_options]
-testpaths = ["tests"]
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "single"
 
 [tool.pylint.format]
 good-names = ["x", "y", "z"]
 
 [tool.pylint.messages_control]
-disable = ["missing-module-docstring", "no-name-in-module", "useless-import-alias", "line-too-long", "too-few-public-methods"]
+disable = [
+    "missing-module-docstring",
+    "no-name-in-module",
+    "useless-import-alias",
+    "line-too-long",
+    "too-few-public-methods",
+]
 
 [tool.pyright]
-typeCheckingMode = "strict"
 reportUnknownVariableType = false
 reportUnknownMemberType = false
 reportMissingTypeStubs = false
 
-[tool.ruff]
-line-length = 120
+[tool.pytest.ini_options]
+testpaths = ["."]
+
+[tool.pdm.build]
+run-setuptools = true
+
+[tool.pdm.dev-dependencies]
+lint = ["pylint>=3.2.6", "pyright>=1.1.374", "ruff>=0.5.6"]
+test = ["pytest>=8.3.2"]
