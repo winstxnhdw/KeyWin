@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4.1.7
 
       - name: Setup PDM
-        uses: pdm-project/setup-pdm@v4
+        uses: pdm-project/setup-pdm@v4.1
         with:
           python-version: '*'
           cache: true
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v4.1.7
 
       - name: Setup PDM
-        uses: pdm-project/setup-pdm@v4
+        uses: pdm-project/setup-pdm@v4.1
         with:
           python-version: '*'
           cache: true
@@ -54,7 +54,7 @@ jobs:
         uses: actions/checkout@v4.1.7
 
       - name: Setup PDM
-        uses: pdm-project/setup-pdm@v4
+        uses: pdm-project/setup-pdm@v4.1
         with:
           python-version: '*'
           cache: true
