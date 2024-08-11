@@ -1,5 +1,7 @@
 # pylint: skip-file
 
+from __future__ import annotations
+
 from typing import Iterable
 
 def send_mouse_event(inputs: Iterable[tuple[int, int, int, int]]) -> bool:

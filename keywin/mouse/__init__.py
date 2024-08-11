@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from keywin.mouse.codes import MouseCodes
 from keywin.send_input import send_mouse_event
 

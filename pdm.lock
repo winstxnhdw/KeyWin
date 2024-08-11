@@ -2,13 +2,13 @@
 # It is not intended for manual editing.
 
 [metadata]
-groups = ["default", "build", "lint", "test"]
+groups = ["default", "lint", "test"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:189970331aa5fa4e1be3fce1e1687a59b8ae050abff28447a59f1dfdcb50a97d"
+content_hash = "sha256:1eec2b550233b69ab3a98c24ab3264d1aa1f066afeae653fd9559089156bc3f3"
 
 [[metadata.targets]]
-requires_python = ">=3.9"
+requires_python = ">=3.8"
 
 [[package]]
 name = "astroid"
