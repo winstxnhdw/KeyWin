@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from keywin.mouse.codes import MouseCodes
-from keywin.send_input import send_mouse_event
+from keywin.send_input import send_mouse_event, send_mouse_flag
 
 
 def create_event(flags: int, x: int = 0, y: int = 0, mouse_data: int = 0) -> tuple[int, int, int, int]:
@@ -51,7 +51,7 @@ def left_click() -> bool:
      --------
      success (bool) : the success of the event
     """
-    return send_events((0, 0, 0, MouseCodes.MOUSE_LEFT_CLICK))
+    return send_mouse_flag(MouseCodes.MOUSE_LEFT_CLICK)
 
 
 def right_click() -> bool:
@@ -64,7 +64,7 @@ def right_click() -> bool:
      --------
      success (bool) : the success of the event
     """
-    return send_events((0, 0, 0, MouseCodes.MOUSE_RIGHT_CLICK))
+    return send_mouse_flag(MouseCodes.MOUSE_RIGHT_CLICK)
 
 
 def middle_click() -> bool:
@@ -77,7 +77,7 @@ def middle_click() -> bool:
      --------
      success (bool) : the success of the event
     """
-    return send_events((0, 0, 0, MouseCodes.MOUSE_MIDDLE_CLICK))
+    return send_mouse_flag(MouseCodes.MOUSE_MIDDLE_CLICK)
 
 
 def xbutton1_click() -> bool:
@@ -116,7 +116,7 @@ def left_press() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, 0, MouseCodes.MOUSEEVENTF_LEFTDOWN))
+    return send_mouse_flag(MouseCodes.MOUSEEVENTF_LEFTDOWN)
 
 
 def left_release() -> bool:
@@ -129,7 +129,7 @@ def left_release() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, 0, MouseCodes.MOUSEEVENTF_LEFTUP))
+    return send_mouse_flag(MouseCodes.MOUSEEVENTF_LEFTUP)
 
 
 def right_press() -> bool:
@@ -142,7 +142,7 @@ def right_press() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, 0, MouseCodes.MOUSEEVENTF_RIGHTDOWN))
+    return send_mouse_flag(MouseCodes.MOUSEEVENTF_RIGHTDOWN)
 
 
 def right_release() -> bool:
@@ -155,7 +155,7 @@ def right_release() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, 0, MouseCodes.MOUSEEVENTF_RIGHTUP))
+    return send_mouse_flag(MouseCodes.MOUSEEVENTF_RIGHTUP)
 
 
 def middle_press() -> bool:
@@ -168,7 +168,7 @@ def middle_press() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, 0, MouseCodes.MOUSEEVENTF_MIDDLEDOWN))
+    return send_mouse_flag(MouseCodes.MOUSEEVENTF_MIDDLEDOWN)
 
 
 def middle_release() -> bool:
@@ -181,7 +181,7 @@ def middle_release() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, 0, MouseCodes.MOUSEEVENTF_MIDDLEUP))
+    return send_mouse_flag(MouseCodes.MOUSEEVENTF_MIDDLEUP)
 
 
 def xbutton1_press() -> bool:

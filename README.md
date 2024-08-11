@@ -135,11 +135,11 @@ class Bot:
     def __init__(self):
 
         self.left_click_event = mouse.create_event(
-            MouseCodes.MOUSEEVENTF_LEFTDOWN | MouseCodes.MOUSEEVENTF_LEFTUP, 100, 100
+            MouseCodes.MOUSE_LEFT_CLICK, 100, 100
         )
 
         self.right_click_event = mouse.create_event(
-            MouseCodes.MOUSEEVENTF_RIGHTDOWN | MouseCodes.MOUSEEVENTF_RIGHTUP, 100, 100
+            MouseCodes.MOUSE_RIGHT_CLICK, 100, 100
         )
 
 

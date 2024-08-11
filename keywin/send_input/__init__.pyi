@@ -16,6 +16,18 @@ def send_mouse_event(inputs: Iterable[tuple[int, int, int, int]]) -> bool:
     """
     ...
 
+def send_mouse_flag(flags: int) -> bool:
+    """
+    Summary
+    -------
+    a low-level wrapper to directly send a mouse flag to the Windows API SendInput function
+
+    Parameters
+    ----------
+    flags (int) : valid mouse flag(s)
+    """
+    ...
+
 def press_keyboard(keys: Iterable[int]) -> bool:
     """
     Summary
