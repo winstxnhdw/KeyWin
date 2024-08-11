@@ -44,7 +44,7 @@ jobs:
         run: pdm install
 
       - name: Run linter
-        run: pdm run pylint --recursive=y .
+        run: pdm run pylint --ignore-paths=.venv --recursive=y .
 
   test:
     runs-on: windows-latest

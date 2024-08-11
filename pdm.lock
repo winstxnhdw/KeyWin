@@ -2,10 +2,10 @@
 # It is not intended for manual editing.
 
 [metadata]
-groups = ["default", "lint", "test"]
+groups = ["default", "build", "lint", "test"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:8144a8f2073e7eec52e88aa0a9cbcc6d8c25be8419e27021efcac40c255394a9"
+content_hash = "sha256:bda309e3f43415eefacdd08f5c582c02b565cb3bd7eafb1bc0097358fe402ecc"
 
 [[metadata.targets]]
 requires_python = ">=3.9"
