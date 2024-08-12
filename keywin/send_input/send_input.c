@@ -56,7 +56,76 @@ static PyObject* press_keyboard(PyObject* self, PyObject* args) {
     Py_RETURN_TRUE;
 }
 
-static PyObject* send_mouse_event(PyObject* self, PyObject* args) {
+static PyObject* send_generic_events(PyObject* self, PyObject* args, DWORD event_type) {
+    PyObject* event_list;
+
+    if (!PyArg_ParseTuple(args, "O", &event_list)) {
+        Py_RETURN_FALSE;
+    }
+
+    const Py_ssize_t events_length = PyObject_Length(event_list);
+
+    if (events_length == -1) {
+        Py_RETURN_FALSE;
+    }
+
+    const UINT number_of_events = (UINT)events_length;
+    const int input_size = sizeof(INPUT);
+    INPUT* inputs = malloc(input_size * number_of_events);
+
+    if (!inputs) {
+        Py_RETURN_FALSE;
+    }
+
+    int x_overflow = 0;
+    int y_overflow = 0;
+    int mouse_data_overflow = 0;
+    int key_overflow = 0;
+
+    for (UINT i = 0; i < number_of_events; i++) {
+        PyObject* event = PyTuple_GetItem(event_list, i);
+        PyObject* key = PyDict_GetItemString(event, "key");
+
+        if (!key) {
+            const LONG x = PyLong_AsLongAndOverflow(PyDict_GetItemString(event, "x"), &x_overflow);
+            const LONG y = PyLong_AsLongAndOverflow(PyDict_GetItemString(event, "y"), &y_overflow);
+            const DWORD mouse_data = PyLong_AsLongAndOverflow(PyDict_GetItemString(event, "data"), &mouse_data_overflow);
+            const DWORD flags = PyLong_AsUnsignedLong(PyDict_GetItemString(event, "flags"));
+
+            if (x_overflow || y_overflow || mouse_data_overflow) {
+                return dispose_and_fail(inputs);
+            }
+
+            inputs[i].type = INPUT_MOUSE;
+            inputs[i].mi.dx = x;
+            inputs[i].mi.dy = y;
+            inputs[i].mi.mouseData = mouse_data;
+            inputs[i].mi.dwFlags = flags;
+        }
+
+        else {
+            const WORD key_code = (WORD)PyLong_AsLongAndOverflow(key, &key_overflow);
+            const DWORD flags = PyLong_AsUnsignedLong(PyDict_GetItemString(event, "release"));
+
+            if (key_overflow) {
+                return dispose_and_fail(inputs);
+            }
+
+            inputs[i].type = INPUT_KEYBOARD;
+            inputs[i].ki.wVk = key_code;
+            inputs[i].ki.dwFlags = flags;
+        }
+    }
+
+    if (SendInput(number_of_events, inputs, input_size) != number_of_events) {
+        return dispose_and_fail(inputs);
+    }
+
+    free(inputs);
+    Py_RETURN_TRUE;
+}
+
+static PyObject* send_mouse_events(PyObject* self, PyObject* args) {
     PyObject* mouse_event_list;
 
     if (!PyArg_ParseTuple(args, "O", &mouse_event_list)) {
@@ -132,7 +201,8 @@ static PyObject* send_mouse_flag(PyObject* self, PyObject* args) {
 
 static PyMethodDef send_input_methods[] = {
     {"press_keyboard", press_keyboard, METH_VARARGS, "Press and release keyboard keys"},
-    {"send_mouse_event", send_mouse_event, METH_VARARGS, "Send mouse events"},
+    {"send_generic_events", send_generic_events, METH_VARARGS, "Send generic events"},
+    {"send_mouse_events", send_mouse_events, METH_VARARGS, "Send mouse events"},
     {"send_mouse_flag", send_mouse_flag, METH_VARARGS, "Send mouse flags"},
     {NULL, NULL, 0, NULL}
 };

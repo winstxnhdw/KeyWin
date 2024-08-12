@@ -149,6 +149,25 @@ class Bot:
         mouse.send_events(self.left_click_event, self.right_click_event)
 ```
 
+### Generic Inputs
+
+`KeyWin` also provides a typesafe `SendInput` wrapper that can be used to send any input event. This function can be more performant for long sequences of inputs. The following example demonstrates how to move the mouse and bring up the task manager.
+
+```python
+from keywin import KeyCodes, MouseCodes
+from keywin.generic import send_input
+
+send_input(
+    {'key': KeyCodes.VK_LCONTROL, 'release': False},
+    {'key': KeyCodes.VK_LSHIFT, 'release': False},
+    {'key': KeyCodes.VK_ESCAPE, 'release': False},
+    {'key': KeyCodes.VK_LCONTROL, 'release': 2},
+    {'key': KeyCodes.VK_LSHIFT, 'release': 2},
+    {'key': KeyCodes.VK_ESCAPE, 'release': 2},
+    {'x': 0, 'y': 0, 'data': 0, 'flags': MouseCodes.MOUSE_MOVE_ABSOLUTE},
+)
+```
+
 ## Benchmarks
 
 `KeyWin` is designed to be used in applications that require low-latency inputs. The following benchmarks were performed against boppreh's [keyboard](https://github.com/boppreh/keyboard) and [mouse](https://github.com/boppreh/mouse) libraries. In all cases, `KeyWin` is magnitudes faster than the other libraries.

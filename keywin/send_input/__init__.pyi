@@ -4,7 +4,21 @@ from __future__ import annotations
 
 from typing import Iterable
 
-def send_mouse_event(inputs: Iterable[tuple[int, int, int, int]]) -> bool:
+from keywin.generic import KeyInput, MouseInput
+
+def send_generic_events(inputs: Iterable[KeyInput | MouseInput]) -> bool:
+    """
+    Summary
+    -------
+    a low-level event wrapper for the Windows API SendInput function
+
+    Parameters
+    ----------
+    inputs (Iterable[KeyInput | MouseInput]) : a list of valid inputs
+    """
+    ...
+
+def send_mouse_events(inputs: Iterable[tuple[int, int, int, int]]) -> bool:
     """
     Summary
     -------

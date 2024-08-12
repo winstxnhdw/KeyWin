@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from keywin.mouse.codes import MouseCodes
-from keywin.send_input import send_mouse_event, send_mouse_flag
+from keywin.send_input import send_mouse_events, send_mouse_flag
 
 
 def create_event(flags: int, x: int = 0, y: int = 0, mouse_data: int = 0) -> tuple[int, int, int, int]:
@@ -38,70 +38,70 @@ def send_events(*inputs: tuple[int, int, int, int]) -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_mouse_event(inputs)
+    return send_mouse_events(inputs)
 
 
 def left_click() -> bool:
     """
-     Summary
-     -------
+    Summary
+    -------
     return click the left mouse button
 
-     Return
-     --------
-     success (bool) : the success of the event
+    Return
+    --------
+    success (bool) : the success of the event
     """
     return send_mouse_flag(MouseCodes.MOUSE_LEFT_CLICK)
 
 
 def right_click() -> bool:
     """
-     Summary
-     -------
+    Summary
+    -------
     return click the right mouse button
 
-     Return
-     --------
-     success (bool) : the success of the event
+    Return
+    --------
+    success (bool) : the success of the event
     """
     return send_mouse_flag(MouseCodes.MOUSE_RIGHT_CLICK)
 
 
 def middle_click() -> bool:
     """
-     Summary
-     -------
+    Summary
+    -------
     return click the middle mouse button
 
-     Return
-     --------
-     success (bool) : the success of the event
+    Return
+    --------
+    success (bool) : the success of the event
     """
     return send_mouse_flag(MouseCodes.MOUSE_MIDDLE_CLICK)
 
 
 def xbutton1_click() -> bool:
     """
-     Summary
-     -------
+    Summary
+    -------
     return click `xbutton1`
 
-     Return
-     --------
-     success (bool) : the success of the event
+    Return
+    --------
+    success (bool) : the success of the event
     """
     return send_events((0, 0, MouseCodes.XBUTTON1, MouseCodes.MOUSE_XBUTTON1_CLICK))
 
 
 def xbutton2_click() -> bool:
     """
-     Summary
-     -------
+    Summary
+    -------
     return click `xbutton2`
 
-     Return
-     --------
-     success (bool) : the success of the event
+    Return
+    --------
+    success (bool) : the success of the event
     """
     return send_events((0, 0, MouseCodes.XBUTTON2, MouseCodes.MOUSE_XBUTTON2_CLICK))
 

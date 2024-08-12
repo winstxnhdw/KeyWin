@@ -1,4 +1,5 @@
-from keywin import KeyCodes
+from keywin import KeyCodes, MouseCodes
+from keywin.generic import send_input
 from keywin.keyboard import press
 from keywin.mouse import (
     left_click,
@@ -21,6 +22,23 @@ from keywin.mouse import (
     xbutton2_press,
     xbutton2_release,
 )
+
+
+def test_send_input():
+    """
+    Summary
+    -------
+    test the `send_input` function
+    """
+    assert send_input(
+        {'key': KeyCodes.VK_LCONTROL, 'release': False},
+        {'key': KeyCodes.VK_LSHIFT, 'release': False},
+        {'key': KeyCodes.VK_ESCAPE, 'release': False},
+        {'key': KeyCodes.VK_LCONTROL, 'release': 2},
+        {'key': KeyCodes.VK_LSHIFT, 'release': 2},
+        {'key': KeyCodes.VK_ESCAPE, 'release': 2},
+        {'x': 0, 'y': 0, 'data': 0, 'flags': MouseCodes.MOUSE_MOVE_ABSOLUTE},
+    )
 
 
 def test_press():
