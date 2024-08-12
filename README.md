@@ -24,13 +24,13 @@ pip install git+https://github.com/winstxnhdw/KeyWin
 `KeyWin` provides a set of pre-mapped key codes for common keys. These key codes are defined [here](keywin/keyboard/codes/__init__.py).
 
 ```python
-from keywin import KeyCodes, keyboard
+from keywin import KeyCode, keyboard
 
 # Enter
-keyboard.press(KeyCodes.VK_RETURN)
+keyboard.press(KeyCode.VK_RETURN)
 
 # Win + D
-keyboard.press(KeyCodes.VK_LWIN, KeyCodes.VK_D)
+keyboard.press(KeyCode.VK_LWIN, KeyCode.VK_D)
 ```
 
 #### Manual Key Codes
@@ -127,7 +127,7 @@ mouse.scroll_horizontal(-10)
 Rarely, you may want to use the low-level API for low-latency inputs. `create_event()` is a helper function that returns a cacheable `MOUSEINPUT` list, which can be passed to the low-level wrapper function `send_events()`.
 
 ```python
-from keywin import mouse, MouseCodes
+from keywin import mouse, MouseCode
 
 
 class Bot:
@@ -135,11 +135,11 @@ class Bot:
     def __init__(self):
 
         self.left_click_event = mouse.create_event(
-            MouseCodes.MOUSE_LEFT_CLICK, 100, 100
+            MouseCode.MOUSE_LEFT_CLICK, 100, 100
         )
 
         self.right_click_event = mouse.create_event(
-            MouseCodes.MOUSE_RIGHT_CLICK, 100, 100
+            MouseCode.MOUSE_RIGHT_CLICK, 100, 100
         )
 
 
@@ -154,17 +154,17 @@ class Bot:
 `KeyWin` also provides a typesafe `SendInput` wrapper that can be used to send any input event. This function can be more performant for long sequences of inputs. The following example demonstrates how to move the mouse and bring up the task manager.
 
 ```python
-from keywin import KeyCodes, MouseCodes
+from keywin import KeyCode, MouseCode
 from keywin.generic import send_input
 
 send_input(
-    {'key': KeyCodes.VK_LCONTROL, 'release': False},
-    {'key': KeyCodes.VK_LSHIFT, 'release': False},
-    {'key': KeyCodes.VK_ESCAPE, 'release': False},
-    {'key': KeyCodes.VK_LCONTROL, 'release': 2},
-    {'key': KeyCodes.VK_LSHIFT, 'release': 2},
-    {'key': KeyCodes.VK_ESCAPE, 'release': 2},
-    {'x': 0, 'y': 0, 'data': 0, 'flags': MouseCodes.MOUSE_MOVE_ABSOLUTE},
+    {'key': KeyCode.VK_LCONTROL, 'release': False},
+    {'key': KeyCode.VK_LSHIFT, 'release': False},
+    {'key': KeyCode.VK_ESCAPE, 'release': False},
+    {'key': KeyCode.VK_LCONTROL, 'release': 2},
+    {'key': KeyCode.VK_LSHIFT, 'release': 2},
+    {'key': KeyCode.VK_ESCAPE, 'release': 2},
+    {'x': 0, 'y': 0, 'data': 0, 'flags': MouseCode.MOUSE_MOVE_ABSOLUTE},
 )
 ```
 
@@ -181,12 +181,12 @@ send_input(
 ```python
 import cProfile as profile
 
-from keywin import keyboard, KeyCodes
+from keywin import keyboard, KeyCode
 
 
 def keywin():
 
-    keyboard.press(KeyCodes.VK_SPACE)
+    keyboard.press(KeyCode.VK_SPACE)
 
 
 if __name__ == '__main__':
@@ -322,23 +322,18 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 ```python
 import cProfile as profile
 
-from keywin import mouse, MouseCodes
+from keywin import mouse, MouseCode
 
 
 def keywin():
 
-    move_absolute_flag = MouseCodes.MOUSEEVENTF_MOVE | MouseCodes.MOUSEEVENTF_ABSOLUTE
-    left_click_flag = MouseCodes.MOUSEEVENTF_LEFTDOWN | MouseCodes.MOUSEEVENTF_LEFTUP
-    right_click_flag = MouseCodes.MOUSEEVENTF_RIGHTDOWN | MouseCodes.MOUSEEVENTF_RIGHTUP
     desired_position = (100, 100)
 
     # Left + Right click at (100, 100)
-    mouse.send_events([
-        *desired_position, 0, move_absolute_flag | left_click_flag
-    ],
-    [
-        *desired_position, 0, move_absolute_flag | right_click_flag
-    ])
+    mouse.send_events(
+        [*desired_position, 0, MouseCode.MOUSE_MOVE_ABSOLUTE | MouseCode.MOUSE_LEFT_CLICK],
+        [*desired_position, 0, MouseCode.MOUSE_MOVE_ABSOLUTE | MouseCode.MOUSE_RIGHT_CLICK]
+    )
 
 
 if __name__ == '__main__':

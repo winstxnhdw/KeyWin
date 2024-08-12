@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from keywin.mouse.codes import MouseCodes
+from keywin.mouse.mouse_code import MouseCode
 from keywin.send_input import send_mouse_events, send_mouse_flag
 
 
@@ -51,7 +51,7 @@ def left_click() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_mouse_flag(MouseCodes.MOUSE_LEFT_CLICK)
+    return send_mouse_flag(MouseCode.MOUSE_LEFT_CLICK)
 
 
 def right_click() -> bool:
@@ -64,7 +64,7 @@ def right_click() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_mouse_flag(MouseCodes.MOUSE_RIGHT_CLICK)
+    return send_mouse_flag(MouseCode.MOUSE_RIGHT_CLICK)
 
 
 def middle_click() -> bool:
@@ -77,7 +77,7 @@ def middle_click() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_mouse_flag(MouseCodes.MOUSE_MIDDLE_CLICK)
+    return send_mouse_flag(MouseCode.MOUSE_MIDDLE_CLICK)
 
 
 def xbutton1_click() -> bool:
@@ -90,7 +90,7 @@ def xbutton1_click() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, MouseCodes.XBUTTON1, MouseCodes.MOUSE_XBUTTON1_CLICK))
+    return send_events((0, 0, MouseCode.XBUTTON1, MouseCode.MOUSE_XBUTTON1_CLICK))
 
 
 def xbutton2_click() -> bool:
@@ -103,7 +103,7 @@ def xbutton2_click() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, MouseCodes.XBUTTON2, MouseCodes.MOUSE_XBUTTON2_CLICK))
+    return send_events((0, 0, MouseCode.XBUTTON2, MouseCode.MOUSE_XBUTTON2_CLICK))
 
 
 def left_press() -> bool:
@@ -116,7 +116,7 @@ def left_press() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_mouse_flag(MouseCodes.MOUSEEVENTF_LEFTDOWN)
+    return send_mouse_flag(MouseCode.MOUSEEVENTF_LEFTDOWN)
 
 
 def left_release() -> bool:
@@ -129,7 +129,7 @@ def left_release() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_mouse_flag(MouseCodes.MOUSEEVENTF_LEFTUP)
+    return send_mouse_flag(MouseCode.MOUSEEVENTF_LEFTUP)
 
 
 def right_press() -> bool:
@@ -142,7 +142,7 @@ def right_press() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_mouse_flag(MouseCodes.MOUSEEVENTF_RIGHTDOWN)
+    return send_mouse_flag(MouseCode.MOUSEEVENTF_RIGHTDOWN)
 
 
 def right_release() -> bool:
@@ -155,7 +155,7 @@ def right_release() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_mouse_flag(MouseCodes.MOUSEEVENTF_RIGHTUP)
+    return send_mouse_flag(MouseCode.MOUSEEVENTF_RIGHTUP)
 
 
 def middle_press() -> bool:
@@ -168,7 +168,7 @@ def middle_press() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_mouse_flag(MouseCodes.MOUSEEVENTF_MIDDLEDOWN)
+    return send_mouse_flag(MouseCode.MOUSEEVENTF_MIDDLEDOWN)
 
 
 def middle_release() -> bool:
@@ -181,7 +181,7 @@ def middle_release() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_mouse_flag(MouseCodes.MOUSEEVENTF_MIDDLEUP)
+    return send_mouse_flag(MouseCode.MOUSEEVENTF_MIDDLEUP)
 
 
 def xbutton1_press() -> bool:
@@ -194,7 +194,7 @@ def xbutton1_press() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, MouseCodes.XBUTTON1, MouseCodes.MOUSEEVENTF_XDOWN))
+    return send_events((0, 0, MouseCode.XBUTTON1, MouseCode.MOUSEEVENTF_XDOWN))
 
 
 def xbutton1_release() -> bool:
@@ -207,7 +207,7 @@ def xbutton1_release() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, MouseCodes.XBUTTON1, MouseCodes.MOUSEEVENTF_XUP))
+    return send_events((0, 0, MouseCode.XBUTTON1, MouseCode.MOUSEEVENTF_XUP))
 
 
 def xbutton2_press() -> bool:
@@ -220,7 +220,7 @@ def xbutton2_press() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, MouseCodes.XBUTTON2, MouseCodes.MOUSEEVENTF_XDOWN))
+    return send_events((0, 0, MouseCode.XBUTTON2, MouseCode.MOUSEEVENTF_XDOWN))
 
 
 def xbutton2_release() -> bool:
@@ -233,7 +233,7 @@ def xbutton2_release() -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, MouseCodes.XBUTTON2, MouseCodes.MOUSEEVENTF_XUP))
+    return send_events((0, 0, MouseCode.XBUTTON2, MouseCode.MOUSEEVENTF_XUP))
 
 
 def move_relative(x: int, y: int) -> bool:
@@ -251,7 +251,7 @@ def move_relative(x: int, y: int) -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((x, y, 0, MouseCodes.MOUSEEVENTF_MOVE))
+    return send_events((x, y, 0, MouseCode.MOUSEEVENTF_MOVE))
 
 
 def move(x: int, y: int) -> bool:
@@ -269,7 +269,7 @@ def move(x: int, y: int) -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((x, y, 0, MouseCodes.MOUSE_MOVE_ABSOLUTE))
+    return send_events((x, y, 0, MouseCode.MOUSE_MOVE_ABSOLUTE))
 
 
 def scroll(scroll_delta: int) -> bool:
@@ -286,7 +286,7 @@ def scroll(scroll_delta: int) -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, scroll_delta, MouseCodes.MOUSEEVENTF_WHEEL))
+    return send_events((0, 0, scroll_delta, MouseCode.MOUSEEVENTF_WHEEL))
 
 
 def scroll_horizontal(scroll_delta: int) -> bool:
@@ -303,4 +303,4 @@ def scroll_horizontal(scroll_delta: int) -> bool:
     --------
     success (bool) : the success of the event
     """
-    return send_events((0, 0, scroll_delta, MouseCodes.MOUSEEVENTF_HWHEEL))
+    return send_events((0, 0, scroll_delta, MouseCode.MOUSEEVENTF_HWHEEL))

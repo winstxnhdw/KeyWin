@@ -1,4 +1,4 @@
-from keywin import KeyCodes, MouseCodes
+from keywin import KeyCode, MouseCode
 from keywin.generic import send_input
 from keywin.keyboard import press
 from keywin.mouse import (
@@ -31,13 +31,13 @@ def test_send_input():
     test the `send_input` function
     """
     assert send_input(
-        {'key': KeyCodes.VK_LCONTROL, 'release': False},
-        {'key': KeyCodes.VK_LSHIFT, 'release': False},
-        {'key': KeyCodes.VK_ESCAPE, 'release': False},
-        {'key': KeyCodes.VK_LCONTROL, 'release': 2},
-        {'key': KeyCodes.VK_LSHIFT, 'release': 2},
-        {'key': KeyCodes.VK_ESCAPE, 'release': 2},
-        {'x': 0, 'y': 0, 'data': 0, 'flags': MouseCodes.MOUSE_MOVE_ABSOLUTE},
+        {'key': KeyCode.VK_LCONTROL, 'release': False},
+        {'key': KeyCode.VK_LSHIFT, 'release': False},
+        {'key': KeyCode.VK_ESCAPE, 'release': False},
+        {'key': KeyCode.VK_LCONTROL, 'release': 2},
+        {'key': KeyCode.VK_LSHIFT, 'release': 2},
+        {'key': KeyCode.VK_ESCAPE, 'release': 2},
+        {'x': 0, 'y': 0, 'data': 0, 'flags': MouseCode.MOUSE_MOVE_ABSOLUTE},
     )
 
 
@@ -47,7 +47,7 @@ def test_press():
     -------
     test the `press` function
     """
-    for key in KeyCodes.__dict__.values():
+    for key in KeyCode.__dict__.values():
         if not isinstance(key, int):
             continue
 

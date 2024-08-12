@@ -1,4 +1,4 @@
-class MouseCodes:
+class MouseCode:
     """
     Summary
     -------
