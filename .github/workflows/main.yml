@@ -5,7 +5,8 @@ on:
     paths:
       - .github/workflows/main.yml
       - pyproject.toml
-      - '**.py'
+      - keywin/
+      - tests/
 
 jobs:
   type-check:
