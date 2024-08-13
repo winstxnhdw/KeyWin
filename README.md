@@ -47,6 +47,16 @@ keyboard.press(0x0D)
 keyboard.press(0x5B, 0x44)
 ```
 
+#### String Inputs
+
+`KeyWin` can also convert strings to key codes, albeit at a slight performance cost.
+
+```python
+from keywin import keyboard
+
+keyboard.write('Hello World!')
+```
+
 ### Mouse
 
 Similar to the keyboard, `KeyWin` provides a low-level API for mouse inputs based on Microsoft's [MOUSEINPUT](https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-mouseinput) structure.

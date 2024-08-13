@@ -1,6 +1,6 @@
 from keywin import KeyCode, MouseCode
 from keywin.generic import send_input
-from keywin.keyboard import press
+from keywin.keyboard import press, write
 from keywin.mouse import (
     left_click,
     left_press,
@@ -56,6 +56,15 @@ def test_press():
 
         except KeyboardInterrupt:
             continue
+
+
+def test_write():
+    """
+    Summary
+    -------
+    test the `write` function
+    """
+    assert write('Hello, world!')
 
 
 def test_mouse_helpers():

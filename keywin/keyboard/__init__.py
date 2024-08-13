@@ -1,4 +1,7 @@
-from keywin.send_input import press_keyboard
+from keywin.send_input import send_keyboard_events
+from keywin.send_input import send_unicode_events as write
+
+__all__ = ['press', 'write']
 
 
 def press(*keys: int) -> bool:
@@ -15,4 +18,4 @@ def press(*keys: int) -> bool:
     -------
     success (bool) : the success of the event
     """
-    return press_keyboard(keys)
+    return send_keyboard_events(keys)

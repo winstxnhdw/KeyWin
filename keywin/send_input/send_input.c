@@ -7,7 +7,7 @@ static PyObject* dispose_and_fail(void* memory) {
     Py_RETURN_FALSE;
 }
 
-static PyObject* press_keyboard(PyObject* self, PyObject* args) {
+static PyObject* send_keyboard_events(PyObject* self, PyObject* args) {
     PyObject* key_tuple;
 
     if (!PyArg_ParseTuple(args, "O", &key_tuple)) {
@@ -23,7 +23,7 @@ static PyObject* press_keyboard(PyObject* self, PyObject* args) {
     const UINT number_of_keys = (UINT)keys_length;
     const UINT inputs_length = number_of_keys * 2;
     const int input_size = sizeof(INPUT);
-    INPUT* inputs = malloc(input_size * inputs_length);
+    INPUT* inputs = calloc(input_size, inputs_length);
 
     if (!inputs) {
         Py_RETURN_FALSE;
@@ -41,14 +41,50 @@ static PyObject* press_keyboard(PyObject* self, PyObject* args) {
 
         inputs[i].type       = INPUT_KEYBOARD;
         inputs[i].ki.wVk     = key_code;
-        inputs[i].ki.dwFlags = 0;
 
         inputs[j].type       = INPUT_KEYBOARD;
         inputs[j].ki.wVk     = key_code;
         inputs[j].ki.dwFlags = KEYEVENTF_KEYUP;
     }
 
-    if (SendInput(inputs_length, inputs, input_size) != inputs_length) {
+    if (!SendInput(inputs_length, inputs, input_size)) {
+        return dispose_and_fail(inputs);
+    }
+
+    free(inputs);
+    Py_RETURN_TRUE;
+}
+
+static PyObject* send_unicode_events(PyObject* self, PyObject* args) {
+    const char* string;
+    Py_ssize_t string_length;
+
+    if (!PyArg_ParseTuple(args, "s#", &string, &string_length)) {
+        Py_RETURN_FALSE;
+    }
+
+    const UINT number_of_characters = (UINT)string_length;
+    const UINT inputs_length = number_of_characters * 2;
+    const int input_size = sizeof(INPUT);
+    INPUT* inputs = calloc(input_size, inputs_length);
+
+    if (!inputs) {
+        Py_RETURN_FALSE;
+    }
+
+    for (UINT i = 0, j = number_of_characters; i < number_of_characters; i++, j++) {
+        const WORD unicode = string[i];
+
+        inputs[i].type       = INPUT_KEYBOARD;
+        inputs[i].ki.wScan   = unicode;
+        inputs[i].ki.dwFlags = KEYEVENTF_UNICODE;
+
+        inputs[j].type       = INPUT_KEYBOARD;
+        inputs[j].ki.wScan   = unicode;
+        inputs[j].ki.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
+    }
+
+    if (!SendInput(inputs_length, inputs, input_size)) {
         return dispose_and_fail(inputs);
     }
 
@@ -71,16 +107,16 @@ static PyObject* send_generic_events(PyObject* self, PyObject* args, DWORD event
 
     const UINT number_of_events = (UINT)events_length;
     const int input_size = sizeof(INPUT);
-    INPUT* inputs = malloc(input_size * number_of_events);
+    INPUT* inputs = calloc(input_size, number_of_events);
 
     if (!inputs) {
         Py_RETURN_FALSE;
     }
 
-    int x_overflow = 0;
-    int y_overflow = 0;
+    int x_overflow          = 0;
+    int y_overflow          = 0;
     int mouse_data_overflow = 0;
-    int key_overflow = 0;
+    int key_overflow        = 0;
 
     for (UINT i = 0; i < number_of_events; i++) {
         PyObject* event = PyTuple_GetItem(event_list, i);
@@ -96,11 +132,11 @@ static PyObject* send_generic_events(PyObject* self, PyObject* args, DWORD event
                 return dispose_and_fail(inputs);
             }
 
-            inputs[i].type = INPUT_MOUSE;
-            inputs[i].mi.dx = x;
-            inputs[i].mi.dy = y;
+            inputs[i].type         = INPUT_MOUSE;
+            inputs[i].mi.dx        = x;
+            inputs[i].mi.dy        = y;
             inputs[i].mi.mouseData = mouse_data;
-            inputs[i].mi.dwFlags = flags;
+            inputs[i].mi.dwFlags   = flags;
         }
 
         else {
@@ -111,13 +147,13 @@ static PyObject* send_generic_events(PyObject* self, PyObject* args, DWORD event
                 return dispose_and_fail(inputs);
             }
 
-            inputs[i].type = INPUT_KEYBOARD;
-            inputs[i].ki.wVk = key_code;
+            inputs[i].type       = INPUT_KEYBOARD;
+            inputs[i].ki.wVk     = key_code;
             inputs[i].ki.dwFlags = flags;
         }
     }
 
-    if (SendInput(number_of_events, inputs, input_size) != number_of_events) {
+    if (!SendInput(number_of_events, inputs, input_size)) {
         return dispose_and_fail(inputs);
     }
 
@@ -140,14 +176,14 @@ static PyObject* send_mouse_events(PyObject* self, PyObject* args) {
 
     const UINT number_of_events = (UINT)mouse_events_length;
     const int input_size = sizeof(INPUT);
-    INPUT* inputs = malloc(input_size * number_of_events);
+    INPUT* inputs = calloc(input_size, number_of_events);
 
     if (!inputs) {
         Py_RETURN_FALSE;
     }
 
-    int x_overflow = 0;
-    int y_overflow = 0;
+    int x_overflow          = 0;
+    int y_overflow          = 0;
     int mouse_data_overflow = 0;
 
     for (UINT i = 0; i < number_of_events; i++) {
@@ -166,10 +202,9 @@ static PyObject* send_mouse_events(PyObject* self, PyObject* args) {
         inputs[i].mi.dy        = y;
         inputs[i].mi.mouseData = mouse_data;
         inputs[i].mi.dwFlags   = flags;
-        inputs[i].mi.time      = 0;
     }
 
-    if (SendInput(number_of_events, inputs, input_size) != number_of_events) {
+    if (!SendInput(number_of_events, inputs, input_size)) {
         return dispose_and_fail(inputs);
     }
 
@@ -178,21 +213,17 @@ static PyObject* send_mouse_events(PyObject* self, PyObject* args) {
 }
 
 static PyObject* send_mouse_flag(PyObject* self, PyObject* args) {
-    int flags;
+    DWORD flags;
 
-    if (!PyArg_ParseTuple(args, "i", &flags)) {
+    if (!PyArg_ParseTuple(args, "I", &flags)) {
         Py_RETURN_FALSE;
     }
 
-    INPUT inputs[1];
-    inputs[0].type         = INPUT_MOUSE;
-    inputs[0].mi.dx        = 0;
-    inputs[0].mi.dy        = 0;
-    inputs[0].mi.mouseData = 0;
-    inputs[0].mi.dwFlags   = flags;
-    inputs[0].mi.time      = 0;
+    INPUT input      = {0};
+    input.type       = INPUT_MOUSE;
+    input.mi.dwFlags = flags;
 
-    if (SendInput(1, inputs, sizeof(INPUT)) != 1) {
+    if (!SendInput(1, &input, sizeof(INPUT))) {
         Py_RETURN_FALSE;
     }
 
@@ -200,7 +231,8 @@ static PyObject* send_mouse_flag(PyObject* self, PyObject* args) {
 }
 
 static PyMethodDef send_input_methods[] = {
-    {"press_keyboard", press_keyboard, METH_VARARGS, "Press and release keyboard keys"},
+    {"send_keyboard_events", send_keyboard_events, METH_VARARGS, "Press and release keyboard keys"},
+    {"send_unicode_events", send_unicode_events, METH_VARARGS, "Send unicode events"},
     {"send_generic_events", send_generic_events, METH_VARARGS, "Send generic events"},
     {"send_mouse_events", send_mouse_events, METH_VARARGS, "Send mouse events"},
     {"send_mouse_flag", send_mouse_flag, METH_VARARGS, "Send mouse flags"},

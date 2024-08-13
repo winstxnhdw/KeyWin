@@ -42,7 +42,7 @@ def send_mouse_flag(flags: int) -> bool:
     """
     ...
 
-def press_keyboard(keys: Iterable[int]) -> bool:
+def send_keyboard_events(keys: Iterable[int]) -> bool:
     """
     Summary
     -------
@@ -51,5 +51,17 @@ def press_keyboard(keys: Iterable[int]) -> bool:
     Parameters
     ----------
     keys (Iterable[int]) : a list of valid keyboard inputs
+    """
+    ...
+
+def send_unicode_events(inputs: str) -> bool:
+    """
+    Summary
+    -------
+    a low-level wrapper to send unicode characters to the Windows API SendInput function
+
+    Parameters
+    ----------
+    string (str) : a string of unicode characters
     """
     ...
