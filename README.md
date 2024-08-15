@@ -401,14 +401,8 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 
 ## Development
 
-Install the development dependencies.
+You can build `KeyWin` with the following.
 
 ```bash
-pip install -r requirements.dev.txt
-```
-
-You can build locally by running `setuptools`.
-
-```bash
-python setup.py build_ext --inplace
+pdm install
 ```
