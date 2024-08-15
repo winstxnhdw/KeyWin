@@ -77,4 +77,4 @@ jobs:
         run: pip install git+https://github.com/winstxnhdw/KeyWin
 
       - name: Mini smoke test
-        run: python -c "from keywin import keyboard; keyboard.press(0x5B, 0x44)"
+        run: python -c "from keywin import *; keyboard.press(0x5B, 0x44)"
