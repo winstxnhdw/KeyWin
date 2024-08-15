@@ -47,9 +47,9 @@ keyboard.press(0x0D)
 keyboard.press(0x5B, 0x44)
 ```
 
-#### String Inputs
+#### Unicode Inputs
 
-`KeyWin` can also convert strings to key codes, albeit at a slight performance cost.
+`KeyWin` can also send unicode inputs. This is more performant than using `press()` for each character.
 
 ```python
 from keywin import keyboard
@@ -134,29 +134,15 @@ mouse.scroll_horizontal(-10)
 
 #### Low-level Access
 
-Rarely, you may want to use the low-level API for low-latency inputs. `create_event()` is a helper function that returns a cacheable `MOUSEINPUT` list, which can be passed to the low-level wrapper function `send_events()`.
+The `mouse` helpers have _some_ overhead due to indirection. You can avoid this by directly accessing the low-level API. `MouseEvent` is a `NamedTuple` which can be passed to the low-level wrapper function `send_events()`.
 
 ```python
-from keywin import mouse, MouseCode
+from keywin.mouse import MouseCode, send_events
+from keywin.mouse.helpers import MouseEvent
 
-
-class Bot:
-
-    def __init__(self):
-
-        self.left_click_event = mouse.create_event(
-            MouseCode.MOUSE_LEFT_CLICK, 100, 100
-        )
-
-        self.right_click_event = mouse.create_event(
-            MouseCode.MOUSE_RIGHT_CLICK, 100, 100
-        )
-
-
-    def dual_click_at_100(self):
-
-        # Left + Right click at (100, 100)
-        mouse.send_events(self.left_click_event, self.right_click_event)
+left_click_event = MouseEvent(MouseCode.MOUSE_LEFT_CLICK, 100, 100)
+right_click_event = MouseEvent(MouseCode.MOUSE_RIGHT_CLICK, 100, 100)
+send_events(left_click_event, right_click_event)
 ```
 
 ### Generic Inputs
@@ -167,10 +153,9 @@ class Bot:
 `KeyWin` also provides a typesafe `SendInput` wrapper that can be used to send any input event. This function can be more performant for long sequences of inputs. The following example demonstrates how to move the mouse and bring up the task manager.
 
 ```python
-from keywin import KeyCode, MouseCode
-from keywin.generic import send_input
+from keywin import generic, KeyCode, MouseCode
 
-send_input(
+generic.send_input(
     {'key': KeyCode.VK_LCONTROL, 'release': False},
     {'key': KeyCode.VK_LSHIFT, 'release': False},
     {'key': KeyCode.VK_ESCAPE, 'release': False},

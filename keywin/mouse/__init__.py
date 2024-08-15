@@ -4,31 +4,11 @@ from keywin.mouse.mouse_code import MouseCode
 from keywin.send_input import send_mouse_events, send_mouse_flag
 
 
-def create_event(flags: int, x: int = 0, y: int = 0, mouse_data: int = 0) -> tuple[int, int, int, int]:
-    """
-    Summary
-    -------
-    helper function to create a mouse event
-
-    Parameters
-    ----------
-    flags (int) : Microsoft's [mouse flags](https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-mouseinput)
-    x (int?) : generic x-axis value
-    y (int?) : generic y-axis value
-    mouse_data (int?) : data to use for the mouse event
-
-    Return
-    --------
-    event (tuple[int, int, int, int]) : the mouse event
-    """
-    return (x, y, mouse_data, flags)
-
-
 def send_events(*inputs: tuple[int, int, int, int]) -> bool:
     """
     Summary
     -------
-    low-level function to send mouse events
+    a low-level function to send mouse events
 
     Parameters
     ----------
@@ -110,7 +90,7 @@ def left_press() -> bool:
     """
     Summary
     -------
-    press the left mouse button
+    hold the left mouse button
 
     Return
     --------
@@ -136,7 +116,7 @@ def right_press() -> bool:
     """
     Summary
     -------
-    press the right mouse button
+    hold the right mouse button
 
     Return
     --------
@@ -162,7 +142,7 @@ def middle_press() -> bool:
     """
     Summary
     -------
-    press the middle mouse button
+    hold the middle mouse button
 
     Return
     --------
@@ -188,7 +168,7 @@ def xbutton1_press() -> bool:
     """
     Summary
     -------
-    press `xbutton1`
+    hold `xbutton1`
 
     Return
     --------
@@ -214,7 +194,7 @@ def xbutton2_press() -> bool:
     """
     Summary
     -------
-    press `xbutton2`
+    hold `xbutton2`
 
     Return
     --------
