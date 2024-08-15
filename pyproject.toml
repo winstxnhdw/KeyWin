@@ -7,6 +7,7 @@ name = "keywin"
 version = "0.1.0"
 authors = [{ name = "winstxnhdw", email = "author@example.com" }]
 description = "A fast Python wrapper for Win32's SendInput function."
+license = { text = "MIT License" }
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [

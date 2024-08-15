@@ -12,7 +12,7 @@ def create_event(flags: int, x: int = 0, y: int = 0, mouse_data: int = 0) -> tup
 
     Parameters
     ----------
-    flags (int) : flag to use for the mouse event
+    flags (int) : Microsoft's [mouse flags](https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-mouseinput)
     x (int?) : generic x-axis value
     y (int?) : generic y-axis value
     mouse_data (int?) : data to use for the mouse event
@@ -32,7 +32,7 @@ def send_events(*inputs: tuple[int, int, int, int]) -> bool:
 
     Parameters
     ----------
-    *inputs (tuple[int, int, int, int]) : mouse event(s)
+    *inputs (tuple[x, y, mouseData, dwFlags]) : mouse event(s)
 
     Return
     --------

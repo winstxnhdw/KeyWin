@@ -30,7 +30,7 @@ def send_mouse_events(inputs: Iterable[tuple[int, int, int, int]]) -> bool:
 
     Parameters
     ----------
-    inputs (Iterable[tuple[int, int, int, int]]) : a list of valid mouse inputs
+    inputs (Iterable[tuple[x, y, mouseData, dwFlags]]) : a list of valid mouse inputs
 
     Returns
     -------

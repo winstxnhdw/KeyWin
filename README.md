@@ -161,6 +161,9 @@ class Bot:
 
 ### Generic Inputs
 
+> [!IMPORTANT]\
+> The generic input API is experimental and may be removed entirely in future versions.
+
 `KeyWin` also provides a typesafe `SendInput` wrapper that can be used to send any input event. This function can be more performant for long sequences of inputs. The following example demonstrates how to move the mouse and bring up the task manager.
 
 ```python

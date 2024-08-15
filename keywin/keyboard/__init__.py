@@ -12,7 +12,7 @@ def press(*keys: int) -> bool:
 
     Parameters
     ----------
-    *keys (int) : key code(s)
+    *keys (int) : Microsoft's [Virtual-Key Codes](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes)
 
     Returns
     -------

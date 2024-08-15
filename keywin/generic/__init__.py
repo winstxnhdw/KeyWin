@@ -33,8 +33,8 @@ class KeyInput(TypedDict):
 
     Attributes
     ----------
-    key (int) : the key code
-    release (Literal[False, 0x02]) : the key release flag
+    key (int) : Microsoft's [Virtual-Key Codes](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes)
+    release (Literal[False, 0x02]) : 0x02 is the flag for key release and False is the flag for key press
     """
 
     key: int
