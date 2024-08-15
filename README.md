@@ -49,7 +49,7 @@ keyboard.press(0x5B, 0x44)
 
 #### Unicode Inputs
 
-`KeyWin` can also send unicode inputs. This is more performant than using `press()` for each character.
+You may also send long unicode inputs. Certain unicode, such as `\n`, cannot be converted into a keystroke. It is also more performant to use this function rather than `press()` for long unicode inputs.
 
 ```python
 from keywin import keyboard
