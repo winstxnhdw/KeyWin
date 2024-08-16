@@ -5,7 +5,7 @@
 [![main.yml](https://github.com/winstxnhdw/KeyWin/actions/workflows/main.yml/badge.svg)](https://github.com/winstxnhdw/KeyWin/actions/workflows/main.yml)
 [![formatter.yml](https://github.com/winstxnhdw/KeyWin/actions/workflows/formatter.yml/badge.svg)](https://github.com/winstxnhdw/KeyWin/actions/workflows/formatter.yml)
 
-`KeyWin` is a fast Python wrapper for Win32's SendInput function using C extensions. It is designed to be used in applications that require low-latency inputs.
+`KeyWin` is a fast Python wrapper for Win32's SendInput function using C extensions. It is designed to be used in applications that require low-latency inputs. All functions drop the Global Interpreter Lock (GIL).
 
 ## Installation
 
@@ -31,6 +31,18 @@ keyboard.press(KeyCode.VK_RETURN)
 
 # Win + D
 keyboard.press(KeyCode.VK_LWIN, KeyCode.VK_D)
+
+# Hold Shift + A
+keyboard.hold(KeyCode.VK_SHIFT, KeyCode.VK_A)
+
+# Release Shift + A
+keyboard.release(KeyCode.VK_SHIFT, KeyCode.VK_A)
+
+# Hold unicode character
+keyboard.hold_unicode('!')
+
+# Release unicode character
+keyboard.release_unicode('!')
 ```
 
 #### Manual Key Codes
@@ -49,12 +61,12 @@ keyboard.press(0x5B, 0x44)
 
 #### Unicode Inputs
 
-You may also send long unicode inputs. Certain unicode, such as `\n`, cannot be converted into a keystroke. It is also more performant to use this function rather than `press()` for long unicode inputs.
+You may also send long unicode inputs. Certain unicode, such as `\n`, cannot be converted into a keystroke and will be ignored by Windows. It is also more performant to use this function rather than `press()` for long unicode inputs.
 
 ```python
 from keywin import keyboard
 
-keyboard.write('Hello World!')
+keyboard.write('Hello, world!')
 ```
 
 ### Mouse
@@ -143,27 +155,6 @@ from keywin.mouse.helpers import MouseEvent
 left_click_event = MouseEvent(MouseCode.MOUSE_LEFT_CLICK, 100, 100)
 right_click_event = MouseEvent(MouseCode.MOUSE_RIGHT_CLICK, 100, 100)
 send_events(left_click_event, right_click_event)
-```
-
-### Generic Inputs
-
-> [!IMPORTANT]\
-> The generic input API is experimental and may be removed entirely in future versions.
-
-`KeyWin` also provides a typesafe `SendInput` wrapper that can be used to send any input event. This function can be more performant for long sequences of inputs. The following example demonstrates how to move the mouse and bring up the task manager.
-
-```python
-from keywin import generic, KeyCode, MouseCode
-
-generic.send_input(
-    {'key': KeyCode.VK_LCONTROL, 'release': False},
-    {'key': KeyCode.VK_LSHIFT, 'release': False},
-    {'key': KeyCode.VK_ESCAPE, 'release': False},
-    {'key': KeyCode.VK_LCONTROL, 'release': 2},
-    {'key': KeyCode.VK_LSHIFT, 'release': 2},
-    {'key': KeyCode.VK_ESCAPE, 'release': 2},
-    {'x': 0, 'y': 0, 'data': 0, 'flags': MouseCode.MOUSE_MOVE_ABSOLUTE},
-)
 ```
 
 ## Benchmarks

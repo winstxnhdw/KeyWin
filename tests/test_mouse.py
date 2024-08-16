@@ -1,6 +1,3 @@
-from keywin import KeyCode, MouseCode
-from keywin.generic import send_input
-from keywin.keyboard import press, write
 from keywin.mouse import (
     left_click,
     left_press,
@@ -15,6 +12,7 @@ from keywin.mouse import (
     right_release,
     scroll,
     scroll_horizontal,
+    send_events,
     xbutton1_click,
     xbutton1_press,
     xbutton1_release,
@@ -22,49 +20,20 @@ from keywin.mouse import (
     xbutton2_press,
     xbutton2_release,
 )
+from keywin.mouse.helpers import MouseEvent
+from keywin.mouse.mouse_code import MouseCode
 
 
-def test_send_input():
+def test_mouse_event():
     """
     Summary
     -------
-    test the `send_input` function
+    test the `MouseEvent` NamedTuple
     """
-    assert send_input(
-        {'key': KeyCode.VK_LCONTROL, 'release': False},
-        {'key': KeyCode.VK_LSHIFT, 'release': False},
-        {'key': KeyCode.VK_ESCAPE, 'release': False},
-        {'key': KeyCode.VK_LCONTROL, 'release': 2},
-        {'key': KeyCode.VK_LSHIFT, 'release': 2},
-        {'key': KeyCode.VK_ESCAPE, 'release': 2},
-        {'x': 0, 'y': 0, 'data': 0, 'flags': MouseCode.MOUSE_MOVE_ABSOLUTE},
+    assert send_events(
+        MouseEvent(MouseCode.MOUSE_LEFT_CLICK, 100, 100, 0),
+        MouseEvent(MouseCode.MOUSEEVENTF_WHEEL, 0, 0, 5),
     )
-
-
-def test_press():
-    """
-    Summary
-    -------
-    test the `press` function
-    """
-    for key in KeyCode.__dict__.values():
-        if not isinstance(key, int):
-            continue
-
-        try:
-            assert press(key)
-
-        except KeyboardInterrupt:
-            continue
-
-
-def test_write():
-    """
-    Summary
-    -------
-    test the `write` function
-    """
-    assert write('Hello, world!')
 
 
 def test_mouse_helpers():
