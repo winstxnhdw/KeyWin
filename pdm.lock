@@ -5,7 +5,7 @@
 groups = ["default", "build", "d", "lint", "test"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:3c0045df0f9745a5eaeb7f1533a9d1a1068dbee58841a934d9f4e941dc75ae4a"
+content_hash = "sha256:6953aae0efd1edfd054d18980be993a1c132a9b9dcd923b84ce1e242c402faa3"
 
 [[metadata.targets]]
 requires_python = ">=3.8"
@@ -223,13 +223,13 @@ files = [
 
 [[package]]
 name = "setuptools"
-version = "74.1.2"
+version = "75.0.0"
 requires_python = ">=3.8"
 summary = "Easily download, build, install, upgrade, and uninstall Python packages"
 groups = ["build"]
 files = [
-    {file = "setuptools-74.1.2-py3-none-any.whl", hash = "sha256:5f4c08aa4d3ebcb57a50c33b1b07e94315d7fc7230f7115e47fc99776c8ce308"},
-    {file = "setuptools-74.1.2.tar.gz", hash = "sha256:95b40ed940a1c67eb70fc099094bd6e99c6ee7c23aa2306f4d2697ba7916f9c6"},
+    {file = "setuptools-75.0.0-py3-none-any.whl", hash = "sha256:791ae94f04f78c880b5e614e560dd32d4b4af5d151bd9e7483e3377846caf90a"},
+    {file = "setuptools-75.0.0.tar.gz", hash = "sha256:25af69c809d9334cd8e653d385277abeb5a102dca255954005a7092d282575ea"},
 ]
 
 [[package]]
