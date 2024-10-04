@@ -45,6 +45,7 @@ disable = [
 ]
 
 [tool.pyright]
+typeCheckingMode = "strict"
 reportUnknownVariableType = false
 reportUnknownMemberType = false
 reportMissingTypeStubs = false
