@@ -1,6 +1,6 @@
 # KeyWin
 
-[![python](https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12-blue)](https://www.python.org/)
+[![python](https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12%20|%203.13-blue)](https://www.python.org/)
 [![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
 [![main.yml](https://github.com/winstxnhdw/KeyWin/actions/workflows/main.yml/badge.svg)](https://github.com/winstxnhdw/KeyWin/actions/workflows/main.yml)
 [![formatter.yml](https://github.com/winstxnhdw/KeyWin/actions/workflows/formatter.yml/badge.svg)](https://github.com/winstxnhdw/KeyWin/actions/workflows/formatter.yml)
