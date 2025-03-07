@@ -57,6 +57,6 @@ testpaths = ["."]
 run-setuptools = true
 
 [tool.pdm.dev-dependencies]
-lint = ["pylint>=3.3.4", "pyright>=1.1.396", "ruff>=0.9.9"]
+lint = ["pylint>=3.3.4", "pyright>=1.1.396", "ruff>=0.9.10"]
 test = ["pytest>=8.3.5"]
 build = ["setuptools>=75.8.2"]
