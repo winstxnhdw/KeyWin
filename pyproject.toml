@@ -59,4 +59,4 @@ run-setuptools = true
 [tool.pdm.dev-dependencies]
 lint = ["pylint>=3.3.6", "pyright>=1.1.399", "ruff>=0.11.6"]
 test = ["pytest>=8.3.5"]
-build = ["setuptools>=78.1.0"]
+build = ["setuptools>=78.1.1"]
