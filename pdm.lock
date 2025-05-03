@@ -5,7 +5,7 @@
 groups = ["default", "build", "lint", "test"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:4c0cc88b4735c425468fc117163594843b8ce781322579436ed4666ae5425920"
+content_hash = "sha256:f4f0be39eb6c5e158f64c60a3860ca22e0938e0801adba68b7741fe86355c75a"
 
 [[metadata.targets]]
 requires_python = ">=3.9"
@@ -223,13 +223,13 @@ files = [
 
 [[package]]
 name = "setuptools"
-version = "80.1.0"
+version = "80.2.0"
 requires_python = ">=3.9"
 summary = "Easily download, build, install, upgrade, and uninstall Python packages"
 groups = ["build"]
 files = [
-    {file = "setuptools-80.1.0-py3-none-any.whl", hash = "sha256:ea0e7655c05b74819f82e76e11a85b31779fee7c4969e82f72bab0664e8317e4"},
-    {file = "setuptools-80.1.0.tar.gz", hash = "sha256:2e308396e1d83de287ada2c2fd6e64286008fe6aca5008e0b6a8cb0e2c86eedd"},
+    {file = "setuptools-80.2.0-py3-none-any.whl", hash = "sha256:5f982284ad5d644764e1985baca205e235651b55f9a7ea8d46878d37104aa5e5"},
+    {file = "setuptools-80.2.0.tar.gz", hash = "sha256:16a390b41627e1455567193435e7cafa9101803ffaa2fdd9ecd0af098301981d"},
 ]
 
 [[package]]
