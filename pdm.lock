@@ -5,7 +5,7 @@
 groups = ["default", "build", "lint", "test"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:69032aa9d07894257f4036daaff8d8bec2fa110b17944718e8fd510bf24566df"
+content_hash = "sha256:76dc6b27a5f4ff512f3943202b246366ac9a30620179f04c65b651922edc3d05"
 
 [[metadata.targets]]
 requires_python = ">=3.9"
@@ -63,6 +63,22 @@ files = [
 ]
 
 [[package]]
+name = "importlib-metadata"
+version = "8.7.0"
+requires_python = ">=3.9"
+summary = "Read metadata from Python packages"
+groups = ["lint"]
+marker = "python_version < \"3.10\""
+dependencies = [
+    "typing-extensions>=3.6.4; python_version < \"3.8\"",
+    "zipp>=3.20",
+]
+files = [
+    {file = "importlib_metadata-8.7.0-py3-none-any.whl", hash = "sha256:e5dd1551894c77868a30651cef00984d50e1002d06942a7101d34870c5f02afd"},
+    {file = "importlib_metadata-8.7.0.tar.gz", hash = "sha256:d13b81ad223b890aa16c5471f2ac3056cf76c5f10f82d6f9292f0b415f389000"},
+]
+
+[[package]]
 name = "iniconfig"
 version = "2.1.0"
 requires_python = ">=3.8"
@@ -75,13 +91,16 @@ files = [
 
 [[package]]
 name = "isort"
-version = "6.0.1"
+version = "6.1.0"
 requires_python = ">=3.9.0"
 summary = "A Python utility / library to sort Python imports."
 groups = ["lint"]
+dependencies = [
+    "importlib-metadata>=4.6.0; python_version < \"3.10\"",
+]
 files = [
-    {file = "isort-6.0.1-py3-none-any.whl", hash = "sha256:2dc5d7f65c9678d94c88dfc29161a320eec67328bc97aad576874cb4be1e9615"},
-    {file = "isort-6.0.1.tar.gz", hash = "sha256:1cb5df28dfbc742e490c5e41bad6da41b805b0a8be7bc93cd0fb2a8a890ac450"},
+    {file = "isort-6.1.0-py3-none-any.whl", hash = "sha256:58d8927ecce74e5087aef019f778d4081a3b6c98f15a80ba35782ca8a2097784"},
+    {file = "isort-6.1.0.tar.gz", hash = "sha256:9b8f96a14cfee0677e78e941ff62f03769a06d412aabb9e2a90487b3b7e8d481"},
 ]
 
 [[package]]
@@ -152,7 +171,7 @@ files = [
 
 [[package]]
 name = "pylint"
-version = "3.3.8"
+version = "3.3.9"
 requires_python = ">=3.9.0"
 summary = "python code static checker"
 groups = ["lint"]
@@ -170,8 +189,8 @@ dependencies = [
     "typing-extensions>=3.10; python_version < \"3.10\"",
 ]
 files = [
-    {file = "pylint-3.3.8-py3-none-any.whl", hash = "sha256:7ef94aa692a600e82fabdd17102b73fc226758218c97473c7ad67bd4cb905d83"},
-    {file = "pylint-3.3.8.tar.gz", hash = "sha256:26698de19941363037e2937d3db9ed94fb3303fdadf7d98847875345a8bb6b05"},
+    {file = "pylint-3.3.9-py3-none-any.whl", hash = "sha256:01f9b0462c7730f94786c283f3e52a1fbdf0494bbe0971a78d7277ef46a751e7"},
+    {file = "pylint-3.3.9.tar.gz", hash = "sha256:d312737d7b25ccf6b01cc4ac629b5dcd14a0fcf3ec392735ac70f137a9d5f83a"},
 ]
 
 [[package]]
@@ -310,4 +329,16 @@ groups = ["lint", "test"]
 files = [
     {file = "typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"},
     {file = "typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"},
+]
+
+[[package]]
+name = "zipp"
+version = "3.23.0"
+requires_python = ">=3.9"
+summary = "Backport of pathlib-compatible object wrapper for zip files"
+groups = ["lint"]
+marker = "python_version < \"3.10\""
+files = [
+    {file = "zipp-3.23.0-py3-none-any.whl", hash = "sha256:071652d6115ed432f5ce1d34c336c0adfd6a884660d1e9712a256d3d3bd4b14e"},
+    {file = "zipp-3.23.0.tar.gz", hash = "sha256:a07157588a12518c9d4034df3fbbee09c814741a33ff63c05fa29d26a2404166"},
 ]
