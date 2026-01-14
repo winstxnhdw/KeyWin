@@ -2,7 +2,7 @@
 name = "keywin"
 version = "0.1.0"
 description = "A fast Python wrapper for Win32's SendInput function."
-license = "MIT"
+license = { file = "LICENSE.txt" }
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
@@ -16,11 +16,15 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
     "Operating System :: Microsoft :: Windows",
 ]
-dependencies = ["pytest>=8.3.5"]
+
 
 [project.urls]
 "Homepage" = "https://github.com/winstxnhdw/KeyWin"
 "Bug Tracker" = "https://github.com/winstxnhdw/KeyWin/issues"
+
+[dependency-groups]
+dev = ["pyright>=1.1.408", "pytest>=8.3.5", "ruff>=0.14.11"]
+
 
 [build-system]
 requires = ["setuptools"]
@@ -66,6 +70,3 @@ reportMissingTypeStubs = false
 
 [tool.pytest.ini_options]
 testpaths = ["."]
-
-[dependency-groups]
-dev = ["pyright>=1.1.408", "ruff>=0.14.11"]
