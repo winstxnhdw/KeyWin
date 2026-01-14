@@ -17,14 +17,12 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
 ]
 
-
 [project.urls]
 "Homepage" = "https://github.com/winstxnhdw/KeyWin"
 "Bug Tracker" = "https://github.com/winstxnhdw/KeyWin/issues"
 
 [dependency-groups]
 dev = ["pyright>=1.1.408", "pytest>=8.3.5", "ruff>=0.14.11"]
-
 
 [build-system]
 requires = ["setuptools"]
@@ -45,23 +43,7 @@ line-length = 120
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = [
-    "D",
-    "Q",
-    "TC",
-    "ANN001",
-    "ANN002",
-    "PLC0414",
-    "INP001",
-    "S104",
-    "S603",
-    "PYI001",
-    "COM812",
-    "SLF001",
-    "PT013",
-    "PLR0913",
-    "PYI021",
-]
+ignore = ["D", "TC001", "INP001", "PYI021"]
 
 [tool.pyright]
 typeCheckingMode = "strict"
