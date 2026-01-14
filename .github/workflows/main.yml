@@ -5,76 +5,25 @@ on:
     paths:
       - .github/workflows/main.yml
       - pyproject.toml
+      - uv.lock
       - keywin/**
       - tests/**
 
 jobs:
-  type-check:
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5.0.0
-
-      - name: Setup PDM
-        uses: pdm-project/setup-pdm@v4.4
-        with:
-          python-version: '*'
-          cache: true
-
-      - name: Install dependencies
-        run: pdm install
-
-      - name: Run typechecker
-        run: pdm run pyright
-
-  lint:
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5.0.0
-
-      - name: Setup PDM
-        uses: pdm-project/setup-pdm@v4.4
-        with:
-          python-version: '*'
-          cache: true
-
-      - name: Install dependencies
-        run: pdm install
-
-      - name: Run linter
-        run: pdm run pylint --ignore-paths=.venv --recursive=y .
-
-  test:
-    runs-on: windows-latest
+  install:
     strategy:
       matrix:
-        python-version: [3.9, '3.10', 3.11, 3.12, 3.13]
+        python-version: [3.8, 3.9, "3.10", 3.11, 3.12, 3.13, 3.14]
+    uses: winstxnhdw/actions/.github/workflows/uv.yml@main
+    with:
+      python-version: ${{ matrix.python-version }}
+      runs-on: windows-latest
+      install-project: true
+
+  complete:
+    needs: install
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5.0.0
-
-      - name: Setup PDM
-        uses: pdm-project/setup-pdm@v4.4
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: true
-
-      - name: Install dependencies
-        run: pdm install
-
-      - name: Run tests
-        run: pdm run pytest
-
-  install:
-    runs-on: windows-latest
-
-    steps:
-      - name: Install KeyWin
-        run: pip install git+https://github.com/winstxnhdw/KeyWin
-
-      - name: Mini smoke test
-        run: python -c "from keywin import *; keyboard.press(0x5B, 0x44)"
+      - name: Complete
+        run: echo "All jobs completed successfully."
