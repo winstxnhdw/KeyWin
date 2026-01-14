@@ -4,13 +4,13 @@ from keywin.send_input import send_keyboard_events, send_keyboard_press_events
 from keywin.send_input import send_unicode_events as write
 
 __all__ = (
-    'send_events',
-    'press',
     'hold',
-    'release',
-    'write',
     'hold_unicode',
+    'press',
+    'release',
     'release_unicode',
+    'send_events',
+    'write',
 )
 
 

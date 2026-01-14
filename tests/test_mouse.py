@@ -1,3 +1,5 @@
+# ruff: noqa: S101
+
 from keywin.mouse import (
     left_click,
     left_press,
@@ -24,7 +26,7 @@ from keywin.mouse.helpers import MouseEvent
 from keywin.mouse.mouse_code import MouseCode
 
 
-def test_mouse_event():
+def test_mouse_event() -> None:
     """
     Summary
     -------
@@ -36,7 +38,7 @@ def test_mouse_event():
     )
 
 
-def test_mouse_helpers():
+def test_mouse_helpers() -> None:
     """
     Summary
     -------

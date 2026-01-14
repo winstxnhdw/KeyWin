@@ -1,7 +1,5 @@
 # pylint: skip-file
 
-from __future__ import annotations
-
 def send_mouse_events(inputs: tuple[tuple[int, int, int, int], ...]) -> bool:
     """
     Summary
@@ -16,7 +14,6 @@ def send_mouse_events(inputs: tuple[tuple[int, int, int, int], ...]) -> bool:
     -------
     success (bool) : the success of the event(s)
     """
-    ...
 
 def send_mouse_flag(flags: int) -> bool:
     """
@@ -32,7 +29,6 @@ def send_mouse_flag(flags: int) -> bool:
     -------
     success (bool) : the success of the event(s)
     """
-    ...
 
 def send_keyboard_events(keys: tuple[tuple[int, int, int], ...]) -> bool:
     """
@@ -48,7 +44,6 @@ def send_keyboard_events(keys: tuple[tuple[int, int, int], ...]) -> bool:
     -------
     success (bool) : the success of the event(s)
     """
-    ...
 
 def send_keyboard_press_events(keys: tuple[int, ...]) -> bool:
     """
@@ -64,7 +59,6 @@ def send_keyboard_press_events(keys: tuple[int, ...]) -> bool:
     -------
     success (bool) : the success of the event(s)
     """
-    ...
 
 def send_unicode_events(string: str) -> bool:
     """
@@ -80,4 +74,3 @@ def send_unicode_events(string: str) -> bool:
     -------
     success (bool) : the success of the event(s)
     """
-    ...

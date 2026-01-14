@@ -1,9 +1,11 @@
+# ruff: noqa: S101
+
 from keywin import KeyCode
 from keywin.keyboard import hold, hold_unicode, press, release, release_unicode, send_events, write
 from keywin.keyboard.helpers import KeyboardEvent
 
 
-def test_keyboard_event():
+def test_keyboard_event() -> None:
     """
     Summary
     -------
@@ -15,7 +17,7 @@ def test_keyboard_event():
     )
 
 
-def test_press():
+def test_press() -> None:
     """
     Summary
     -------
@@ -32,16 +34,16 @@ def test_press():
             continue
 
 
-def test_write():
+def test_write() -> None:
     """
     Summary
     -------
     test the `write` function
     """
-    assert write('Hello, world!')
+    assert write("Hello, world!")
 
 
-def test_keyboard_helpers():
+def test_keyboard_helpers() -> None:
     """
     Summary
     -------
@@ -49,5 +51,5 @@ def test_keyboard_helpers():
     """
     assert hold(KeyCode.VK_A)
     assert release(KeyCode.VK_A)
-    assert hold_unicode(ord('A'))
-    assert release_unicode(ord('A'))
+    assert hold_unicode(ord("A"))
+    assert release_unicode(ord("A"))
