@@ -22,7 +22,7 @@ classifiers = [
 "Bug Tracker" = "https://github.com/winstxnhdw/KeyWin/issues"
 
 [dependency-groups]
-dev = ["pyright>=1.1.408", "pytest>=8.3.5", "ruff>=0.15.0"]
+dev = ["pyright>=1.1.408", "pytest>=8.3.5", "ruff>=0.15.2"]
 
 [build-system]
 requires = ["setuptools"]
