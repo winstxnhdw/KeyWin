@@ -39,10 +39,10 @@ keyboard.hold(KeyCode.VK_SHIFT, KeyCode.VK_A)
 keyboard.release(KeyCode.VK_SHIFT, KeyCode.VK_A)
 
 # Hold unicode character
-keyboard.hold_unicode('!')
+keyboard.hold_unicode("!")
 
 # Release unicode character
-keyboard.release_unicode('!')
+keyboard.release_unicode("!")
 ```
 
 #### Manual Key Codes
@@ -66,7 +66,7 @@ You may also send long unicode inputs. Certain unicode, such as `\n`, cannot be 
 ```python
 from keywin import keyboard
 
-keyboard.write('Hello, world!')
+keyboard.write("Hello, world!")
 ```
 
 ### Mouse
@@ -178,8 +178,8 @@ def keywin():
     keyboard.press(KeyCode.VK_SPACE)
 
 
-if __name__ == '__main__':
-    profile.run('keywin()')
+if __name__ == "__main__":
+    profile.run("keywin()")
 ```
 
 </details>
@@ -211,8 +211,8 @@ def keyboard():
     press_and_release("space")
 
 
-if __name__ == '__main__':
-    profile.run('keyboard()')
+if __name__ == "__main__":
+    profile.run("keyboard()")
 ```
 
 </details>
@@ -321,12 +321,12 @@ def keywin():
     # Left + Right click at (100, 100)
     mouse.send_events(
         [*desired_position, 0, MouseCode.MOUSE_MOVE_ABSOLUTE | MouseCode.MOUSE_LEFT_CLICK],
-        [*desired_position, 0, MouseCode.MOUSE_MOVE_ABSOLUTE | MouseCode.MOUSE_RIGHT_CLICK]
+        [*desired_position, 0, MouseCode.MOUSE_MOVE_ABSOLUTE | MouseCode.MOUSE_RIGHT_CLICK],
     )
 
 
-if __name__ == '__main__':
-    profile.run('keywin()')
+if __name__ == "__main__":
+    profile.run("keywin()")
 ```
 
 </details>
@@ -360,8 +360,8 @@ def mouse():
     right_click()
 
 
-if __name__ == '__main__':
-    profile.run('mouse()')
+if __name__ == "__main__":
+    profile.run("mouse()")
 ```
 
 </details>
